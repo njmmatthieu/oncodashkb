@@ -108,16 +108,16 @@ sample to patient:
 # OMICS
 # =====
 
-genome:
-    represented_as: node
-    label_in_input: genome
+# genome:
+#     represented_as: node
+#     label_in_input: genome
 
-reference genome: # Not existing in Biolink.
-    is_a: genotype to phenotypic feature association
-    represented_as: edge
-    label_in_input: reference_genome
-    source: sequence variant
-    target: genome
+# reference genome: # Not existing in Biolink.
+#     is_a: genotype to phenotypic feature association
+#     represented_as: edge
+#     label_in_input: reference_genome
+#     source: sequence variant
+#     target: genome
 
 
 gene:
@@ -128,9 +128,12 @@ gene:
         gene_summary: str
 
 variant to gene association:
-    is_a: association
+    # is_a: association # Exists in Biolink
     represented_as: edge
     label_in_input: variant_in_gene
+    source: sequence variant
+    target: gene
+
 
 
 # DISEASE
@@ -148,24 +151,24 @@ disease:
         description: str
 
 variant to disease association:
-    is_a: association
+    # is_a: association # exists in Biolink
     represented_as: edge
     label_in_input: variant_to_disease
     source: sequence variant
     target: disease
 
 
-oncogenicity: # Not in Biolink
-    is_a: behavioral feature
-    represented_as: node
-    label_in_input: oncogenicity
+# oncogenicity: # Not in Biolink
+#     is_a: behavioral feature
+#     represented_as: node
+#     label_in_input: oncogenicity
 
-variant to oncogenicity: # Not in Biolink
-    is_a: variant to phenotypic feature association
-    represented_as: edge
-    label_in_input: variant_to_oncogenicity
-    source: sequence variant
-    target: oncogenicity
+# variant to oncogenicity: # Not in Biolink
+#     is_a: variant to phenotypic feature association
+#     represented_as: edge
+#     label_in_input: variant_to_oncogenicity
+#     source: sequence variant
+#     target: oncogenicity
 
 patient has chronic illness:
     is_a: entity to disease association
@@ -179,7 +182,8 @@ treatment:
     label_in_input: treatment
 
 patient has treatment:
-    is_a: association
+    # is_a: association
+    is_a: case to entity association mixin
     represented_as: edge
     label_in_input: patient_has_treatment
     source: patient
@@ -190,7 +194,8 @@ patient has treatment:
 # =================
 
 chromosome:
-    is_a: NucleicAcidEntity # Surpisingly missing from Biolink? Maybe double-check.
+    # is_a: NucleicAcidEntity # Surpisingly missing from Biolink? Maybe double-check.
+    is_a: nucleic acid entity
     represented_as: node
     label_in_input: chromosome
 
@@ -203,11 +208,11 @@ genomic sequence localization:
         base coordinate: str
         strand: str
 
-sequence variant to sequence feature association:
-    is_a: association
-    represented_as: edge
-    source: sequence variant
-    target: sequence feature
+# sequence variant to sequence feature association:
+#     is_a: association
+#     represented_as: edge
+#     source: sequence variant
+#     target: sequence feature # sequence feature is not defined
 
 SNV:
     represented_as: node

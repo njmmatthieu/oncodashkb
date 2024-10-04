@@ -27,7 +27,7 @@ transformers:
     - map:
         columns:
             - oncogenic_summary
-        from_subject: variant
+        # from_subject: variant
         to_object: disease
         via_relation: variant_to_disease
     - map:
