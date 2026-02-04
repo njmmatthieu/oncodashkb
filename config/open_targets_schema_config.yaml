@@ -1,0 +1,122 @@
+# NODES
+
+drug:
+    represented_as: node
+    label_in_input : drug
+    properties:
+        canonicalSmiles: str
+        inchiKey: str
+        drugType: str
+        blackBoxWarning: bool
+        drug_name: str
+        yearOfFirstapproval: str
+        maximumClinicalTrialPhase: str
+        hasBeenWithdrawn: bool
+        isApproved: bool
+        tradeName: str
+        synonym: str
+        Wikipedia: str
+        chEBI: str
+        drugbank: str
+        PubChem: str
+        INN: str
+        DrugCentral: str
+        TG-GATEs: str
+        DailyMed: str
+        EMA: str
+        USAN: str
+        description: str
+        
+parent_drug:
+    is_a: drug
+    represented_as: node
+    label_in_input : drug
+    properties:
+        canonicalSmiles: str
+        inchiKey: str
+        drugType: str
+        blackBoxWarning: bool
+        drug_name: str
+        yearOfFirstapproval: str
+        maximumClinicalTrialPhase: str
+        hasBeenWithdrawn: bool
+        isApproved: bool
+        tradeName: str
+        synonym: str
+        Wikipedia: str
+        chEBI: str
+        drugbank: str
+        PubChem: str
+        INN: str
+        DrugCentral: str
+        TG-GATEs: str
+        DailyMed: str
+        EMA: str
+        USAN: str
+        description: str
+
+child_drug:
+    is_a: drug
+    represented_as: node
+    label_in_input : drug
+    properties:
+        canonicalSmiles: str
+        inchiKey: str
+        drugType: str
+        blackBoxWarning: bool
+        drug_name: str
+        yearOfFirstapproval: str
+        maximumClinicalTrialPhase: str
+        hasBeenWithdrawn: bool
+        isApproved: bool
+        tradeName: str
+        synonym: str
+        Wikipedia: str
+        chEBI: str
+        drugbank: str
+        PubChem: str
+        INN: str
+        DrugCentral: str
+        TG-GATEs: str
+        DailyMed: str
+        EMA: str
+        USAN: str
+        description: str
+
+gene:
+    represented_as: node
+    label_in_input: gene
+    properties:
+        gene_summary: str
+        hugoSymbol: str
+        name: str
+
+protein:
+    represented_as: node
+    label_in_input: protein
+    properties:
+
+# EDGES
+
+has target:
+    represented_as: edge
+    label_in_input: has_target
+
+subclass of:
+    represented_as: edge
+    label_in_input : subclass_of
+
+superclass of:
+    represented_as: edge
+    label_in_input : superclass_of
+    properties:
+        actionType: str
+        mechanism_of_action: str
+        # references: str
+
+transcribed to:
+    represented_as: edge
+    label_in_input: transcribed_to
+    properties:
+
+

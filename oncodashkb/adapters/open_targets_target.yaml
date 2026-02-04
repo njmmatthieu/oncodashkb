@@ -1,0 +1,23 @@
+row: 
+		map: 
+				column: id
+				to_subject: gene
+
+transformers:
+		- map:
+				column: proteinIds [numpy.darray of dictionnary with two keys 'id' and 'source' - shape (n,)]
+				to_object: protein
+				via_relation: transcribed_to
+				# ex: [{'id:': "...", 'source': '', 'urls': array([])}]
+		- map:
+				column: approvedSymbol
+				to_property: hugoSymbol
+				to_object: gene
+		# - map:
+		# 		column: biotype
+		# 		to_property: biotype
+		# 		to_object: gene
+		- map:
+				column: approvedName
+				to_property: name
+				to_object: gene

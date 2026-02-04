@@ -1,0 +1,27 @@
+row: 
+		map: 
+				column: chemblIds [numpy.darray - shape (n,)]
+				to_subject: drug
+
+transformers:
+		- map:
+				column: targets [numpy.darray - shape (n,)]
+				to_object: gene
+				via_relation: has_target
+		# - map:
+		# 		column: targetName
+		# 		to_property: name
+		# 		to_object: gene
+		- map:
+				column: actionType
+				to_property: action_type
+				to_object: has_target
+		- map:
+				column: mechanismOfAction
+				to_property: mechanism_of_action
+				to_object: has_target
+		- map:
+				column: references [numpy.darray - shape (n,)]
+				to_property: references
+				to_object: has_target
+				# ex: [{'source:': "...", 'ids': arra([]), 'urls': array([])}]

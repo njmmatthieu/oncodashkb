@@ -1,0 +1,150 @@
+row: 
+		map: 
+				column: id
+				to_subject: row_drug
+				final_type: drug
+
+transformers:
+		- map:
+				column: parentId
+				to_object: parent_drug
+				final_type: drug
+				via_relation: subclass_of
+		- map:
+				column: childChemblIds [numpy.darray - shape (1,)]
+				to_object: child_drug
+				final_type: drug
+				via_relation: superclass_of
+		- map:
+				column: linkedTargets # [dictionary: key="rows" numpy.darray - shape (1,)]
+				to_object: gene
+				via_relation: has_target
+				# ex: {'rows': array(['', ''], dtype=object),'count': 2}
+		- map:
+				column: canonicalSmiles
+				to_property: canonicalSmiles
+				to_object: drug
+		- map:
+				column: inchiKey
+				to_property: inchiKey
+				to_object: drug
+		- map:
+				column: drugType
+				to_property: drugType
+				to_object: drug
+		- map:
+				column: blackBoxWarning [bool]
+				to_property: blackBoxWarning
+				to_object: drug
+		- map:
+				column: name
+				to_property: drugName
+				to_object: drug
+		- map:
+				column: yearOfFirstApproval
+				to_property: yearOfFirstApproval
+				to_object: drug
+		- map:
+				column: maximumClinicalTrialPhase
+				to_property: maximumClinicalTrialPhase
+				to_object: drug
+		- map:
+				column: hasBeenWithdrawn [bool]
+				to_property: hasBeenWithdrawn
+				to_object: drug
+		- map:
+				column: isApproved [bool]
+				to_property: isApproved
+				to_object: drug
+		- map:
+				column: tradeNames # [numpy.darray - shape (1,)]
+				to_property: tradeName
+				to_object: drug
+		- map:
+				column: synonyms # [numpy.darray - shape (1,)]
+				to_property: synonym
+				to_object: drug
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: Wikipedia
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: chEBI
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: drugbank
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: PubChem
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: INN
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: DrugCentral
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: TG-GATEs
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: DailyMed
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: EMA
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: corssReferences # [list of tuple ('key', 'numpy.darray - shape (1,)')]
+				to_property: USAN
+				to_object: drug
+				# ex: [('PubChem', array(['', '', '', ''], dtype=object)),
+				# 	('Wikipedia', array([''], dtype=object)),
+				# 	('drugbank', array([''], dtype=object)),
+				# 	('chEBI', array([''], dtype=object))]
+		- map:
+				column: description
+				to_property: description
+				to_object: drug
