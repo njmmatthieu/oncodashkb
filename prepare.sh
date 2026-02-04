@@ -60,10 +60,9 @@ echo " | GO — OK" >&2
 echo " | Open Targets..." >&2
 mkdir -p OT
 cd OT
-rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/24.06/output/etl/parquet/targets .
-rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/24.06/output/etl/parquet/diseases .
-rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/24.06/output/etl/parquet/molecule .
-rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/24.06/output/etl/parquet/evidence .
+rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/25.12/output/target .
+rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/25.12/output/drug_mechanism_of_action .
+rsync --ignore-existing -rpltvz --delete rsync.ebi.ac.uk::pub/databases/opentargets/platform/25.12/output/drug_molecule .
 cd ..
 echo " | OT — OK" >&2
 
