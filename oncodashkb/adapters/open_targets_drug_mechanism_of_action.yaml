@@ -21,7 +21,13 @@ transformers:
 				to_property: mechanism_of_action
 				to_object: has_target
 		- map:
-				column: references [numpy.darray - shape (n,)]
-				to_property: references
+				column: references # [numpy.darray - shape (n,) - dictionary 3 keys: 'source', 'ids' et 'urls' ]
+				to_property: PubMed
 				to_object: has_target
 				# ex: [{'source:': "...", 'ids': arra([]), 'urls': array([])}]
+		- map:
+				column: references # [numpy.darray - shape (n,) - dictionary 3 keys: 'source', 'ids' et 'urls' ]
+				to_property: Other
+				to_object: has_target
+				# ex: [{'source:': "...", 'ids': arra([]), 'urls': array([])}]
+# ... 

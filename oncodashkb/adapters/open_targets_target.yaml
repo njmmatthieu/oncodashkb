@@ -5,18 +5,20 @@ row:
 
 transformers:
 		- map:
-				column: proteinIds [numpy.darray of dictionnary with two keys 'id' and 'source' - shape (n,)]
+				column: proteinIds # [numpy.darray of dictionnary with two keys 'id' and 'source' - shape (n,)]
 				to_object: protein
 				via_relation: transcribed_to
 				# ex: [{'id:': "...", 'source': '', 'urls': array([])}]
+				# we are not extracting uniprot_obsolete and uniprot_trembl; only uniprot_swissprot
 		- map:
 				column: approvedSymbol
 				to_property: hugoSymbol
 				to_object: gene
-		# - map:
-		# 		column: biotype
-		# 		to_property: biotype
-		# 		to_object: gene
+		# filter on protein_coding, TR_V_gene, IG_C_gene, TR_C_gene, transcribed_unitary_pseudogene
+		- map:
+				column: biotype
+				to_property: biotype
+				to_object: gene
 		- map:
 				column: approvedName
 				to_property: name
