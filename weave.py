@@ -362,42 +362,6 @@ if __name__ == "__main__":
         edges += local_edges
         logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
-    ### OpenTarget diseases
-    if asked.open_targets_diseases:
-        opt_loaded += 1
-        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
-        directory = asked.open_targets_diseases[0]
-        columns = ['id', 'code', 'description', 'name']
-        name = "open_targets_diseases"
-        local_nodes, local_edges = process_OT(
-            bc, directory, columns, name,
-            od.open_targets_diseases.OpenTargetsDiseases
-        )
-        logging.info(f"OK, wove {name}: {len(local_nodes)} nodes and {len(local_edges)} edges.")
-        nodes += local_nodes
-        edges += local_edges
-        logging.info(f"Done adapter {opt_loaded}/{opt_total}")
-
-    ### OpenTarget evidences
-    if asked.open_targets_evidences:
-        opt_loaded += 1
-        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
-        directory = asked.open_targets_evidences[0]
-        columns = [
-            'datasourceId', 'targetId', 'clinicalPhase', 'clinicalStatus',
-            'diseaseFromSource', 'diseaseFromSourceMappedId', 'drugId',
-            'targetFromSource', 'urls', 'diseaseId', 'score', 'variantEffect'
-        ]
-        name = "open_targets_evidences"
-        local_nodes, local_edges = process_OT(
-            bc, directory, columns, name,
-            od.open_targets_evidences.OpenTargetsEvidences
-        )
-        logging.info(f"OK, wove {name}: {len(local_nodes)} nodes and {len(local_edges)} edges.")
-        nodes += local_nodes
-        edges += local_edges
-        logging.info(f"Done adapter {opt_loaded}/{opt_total}")
-
     ## GeneOntology
 
     ### GO
