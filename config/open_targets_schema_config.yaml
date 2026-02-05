@@ -117,6 +117,5 @@ superclass of:
 transcribed to:
     represented_as: edge
     label_in_input: transcribed_to
-    properties:
 
 
