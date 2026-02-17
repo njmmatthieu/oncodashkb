@@ -4,12 +4,14 @@ version = "0.1.0"
 description = "Knowledge graph build for oncodash using BioCypher"
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
+package-mode = false
 authors = [
     { name = "Johann Dreo", email = "johann.dreo@pasteur.fr" },
     { name = "Marko Baric", email = "marko.baric@pasteur.fr" },
     { name = "Matthieu Najm", email = "matthieu.najm@pasteur.fr" },
     { name = "Benno Schwikowski", email = "benno.schwikowski@pasteur.fr" },
 ]
+
 dependencies = [
   "biocypher>=0.11.0,<0.12",
   "pooch>=1.7.0,<2.0",
@@ -24,6 +26,7 @@ dependencies = [
   "pre-commit>=4.5.0",
   "openpyxl>=3.1.5",
   "pyarrow<21.0.0",
+  "omnipath_secondary_adapter",
 ]
 
 [dependency-groups]
@@ -31,10 +34,5 @@ dev = [
   "pytest>=8.4.1",
 ]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["oncodashkb"]
-
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
+[tool.uv.sources]
+omnipath_secondary_adapter = { path = "../../../OmniPath/omnipath-secondary-adapter" }
