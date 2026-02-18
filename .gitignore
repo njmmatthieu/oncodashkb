@@ -16,3 +16,6 @@ poetry.lock
 uv.lock
 *.egg-info
 build
+
+oncodashkb/transformers/networks.py
+oncodashkb/adapters/omnipath_networks.yaml
