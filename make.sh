@@ -62,12 +62,13 @@ fi
 echo "Weave data..." >&2
 
 cmd="uv run python3 ${py_args} $script_dir/weave.py \
-    --clinical                              $data_dir/DECIDER/$data_version/clinical_export_2024-11-13.csv \
-    --short-mutations-local                 $data_dir/DECIDER/$data_version/short_mutations_v4.10_local.csv \
-    --short-mutations-external              $data_dir/DECIDER/$data_version/short_mutations_v4.10_external.csv  \
-    --copy-number-amplifications-local      $data_dir/DECIDER/$data_version/cnas_v2.9_local.csv \
-    --copy-number-amplifications-external   $data_dir/DECIDER/$data_version/cnas_v2.9_external.csv  \
+    --omnipath-networks                     $data_dir/omnipath_networks/subset_omnipath_networks_different_type_entity_type_source_and_entity_type_target_shorter.tsv \
     ${weave_args}" # \
+    # --clinical                              $data_dir/DECIDER/$data_version/clinical_export.csv \
+    # --short-mutations-local                 $data_dir/DECIDER/$data_version/snv_local.csv \
+    # --short-mutations-external              $data_dir/DECIDER/$data_version/snv_external.csv  \
+    # --copy-number-amplifications-local      $data_dir/DECIDER/$data_version/cna_local.csv \
+    # --copy-number-amplifications-external   $data_dir/DECIDER/$data_version/cna_external.csv  \
     # --clinical                   $data_dir/DECIDER/$data_version/clinical_export.csv \
     # --copy_number_alterations    $data_dir/DECIDER/$data_version/cna_external.csv \
     # --gene_ontology_genes        $data_dir/DECIDER/$data_version/OncoKB_gene_symbols.conf \
@@ -75,8 +76,6 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py \
     # --gene_ontology              $data_dir/GO/goa_human.gaf.gz \
     # --gene_ontology_owl          $data_dir/GO/go.owl \
     # --gene_ontology_reverse
-    # --single_nucleotide_variants $data_dir/DECIDER/$data_version/snv_external.csv  \
-    #--small_molecules           $data_dir/omnipath_networks/omnipath_webservice_interactions__small_molecule_interactions_filtered.tsv.gz"
 
 echo "Weaving command:" >&2
 echo "$cmd" >&2
