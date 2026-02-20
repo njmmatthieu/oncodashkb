@@ -116,11 +116,11 @@ cd ..
 cd oncodashkb
 mkdir transformers
 cd transformers
-wget -L https://raw.githubusercontent.com/njmmatthieu/omnipath-secondary-adapter/refs/heads/networks_adapter/omnipath_secondary_adapter/adapters/networks.py
+wget -L https://raw.githubusercontent.com/njmmatthieu/omnipath-secondary-adapter/refs/heads/networks_adapter/src/omnipath_secondary_adapter/adapters/networks.py
 echo "OmniPath Networks custom transformer saved." >&2
 cd ..
 cd adapters
-wget -L https://raw.githubusercontent.com/njmmatthieu/omnipath-secondary-adapter/refs/heads/networks_adapter/omnipath_secondary_adapter/adapters/networks.yaml -O omnipath_networks.yaml
+wget -L https://github.com/njmmatthieu/omnipath-secondary-adapter/blob/networks_adapter/src/omnipath_secondary_adapter/adapters/networks.yaml -O omnipath_networks.yaml
 echo "OmniPath Networks mapping file saved." >&2
 cd ../..
 
