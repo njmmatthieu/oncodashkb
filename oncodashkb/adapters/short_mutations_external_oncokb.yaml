@@ -29,9 +29,11 @@ transformers:
         for_object: short_mutation
         forbidden: "[']"
         substitute: "_"
-    - map: 
+    - replace: 
         column: geneSummary
         to_property: gene_summary
         for_object: gene
+        forbidden: "[']"
+        substitute: "_"
 metadata:
         - data_source: short_mutations_external_oncokb

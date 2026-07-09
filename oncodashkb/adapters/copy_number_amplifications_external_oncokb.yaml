@@ -35,13 +35,17 @@ transformers:
         sep: "\t"
     # Properties
     ## Alterations
-    - map: 
+    - replace: 
         column: mutationEffectDescription
         to_property: mutation_effect_description
         for_object: copy_number_amplification
-    - map: 
+        forbidden: "[']"
+        substitute: "_"
+    - replace: 
         column: geneSummary
         to_property: gene_summary
         for_object: gene
+        forbidden: "[']"
+        substitute: "_"
 metadata:
         - data_source: copy_number_amplifications_external_oncokb
