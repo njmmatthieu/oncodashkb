@@ -87,13 +87,12 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py
     --config $CONFIG
     --clinical                              $decider_dir/clinical_export.xlsx
     --short-mutations-local                 $decider_dir/short_mutations_local.csv 
-    --structural-variants-2                 $decider_dir/structural_variants_2.csv
     --short-mutations-external              $decider_dir/short_mutations_external.csv 
     --copy-number-amplifications-local      $decider_dir/cnas_local.csv
     --copy-number-amplifications-external   $decider_dir/cnas_external.csv 
-    --structural-variants                   $decider_dir/structural_variants.xlsx 
+    --structural-variants                   $decider_dir/structural_variants.csv
     --oncokb                                $decider_dir/treatments_oncokb.csv
-    --omnipath-networks $data_dir/omnipath_networks/omnipath_webservice_interactions__latest.tsv.gz
+    --omnipath-networks                     $data_dir/omnipath_networks/omnipath_webservice_interactions__latest.tsv.gz
     --open-targets-drug-molecule            $data_dir/OT/drug_molecule/
     --open-targets-drug_mechanism_of_action $data_dir/OT/drug_mechanism_of_action/
     --open-targets-target                   $data_dir/OT/target/
@@ -102,6 +101,7 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py
     ${weave_args}"
 echo "Weaving command:" >&2
 echo "$cmd" >&2
+    # --structural-variants-placeholder                   $decider_dir/structural_variants_placeholder.xlsx 
 
 $cmd > last_biocypher_import.sh
 

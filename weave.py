@@ -203,10 +203,10 @@ if __name__ == "__main__":
     parser.add_argument("-cnae", "--copy-number-amplifications-external", metavar="CSV", nargs="+",
                         help="Extract from a CSV file with copy number amplifications' external annotations.")
 
-    parser.add_argument("-sv", "--structural-variants", metavar="CSV", nargs="+",
+    parser.add_argument("-svp", "--structural-variants-placeholder", metavar="CSV", nargs="+",
                         help="Extract from a CSV file with short mutations' local annotations.")
 
-    parser.add_argument("-sv2", "--structural-variants-2", metavar="CSV", nargs="+",
+    parser.add_argument("-sv", "--structural-variants", metavar="CSV", nargs="+",
                         help="")
 
     parser.add_argument("-o", "--oncokb", metavar="CSV", nargs="+",
@@ -282,7 +282,7 @@ if __name__ == "__main__":
         "copy_number_amplifications_local",
         "copy_number_amplifications_external",
         "structural_variants",
-        "structural_variants_2",
+        "structural_variants_placeholder",
         "oncokb",
         "oncokb_gene_status",
         "omnipath_networks",
@@ -322,11 +322,11 @@ if __name__ == "__main__":
         edges += local_edges
         logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
-    if asked.structural_variants:
+    if asked.structural_variants_placeholder:
         opt_loaded += 1
         logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
 
-        data_file = asked.structural_variants[0]
+        data_file = asked.structural_variants_placeholder[0]
 
         logging.info(f" |  | Load data `{data_file}`...")
         table = pd.read_excel(data_file)
@@ -337,7 +337,29 @@ if __name__ == "__main__":
 
         local_nodes, local_edges = process_table(
             table,
-            name="structural_variants",
+            name="structural_variants_placeholder",
+        )
+
+        logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
+        nodes += local_nodes
+        edges += local_edges
+        logging.info(f"Done adapter {opt_loaded}/{opt_total}")
+
+    if asked.structural_variants:
+        opt_loaded += 1
+        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
+
+        data_file = asked.structural_variants[0]
+
+        logging.info(f" |  | Load data `{data_file}`...")
+        table = progress_read(data_file, hint=72648, sub_sample = asked.sub_sample)
+
+        # TEMP Remove duplicated lines 
+        table = table.drop_duplicates(subset=["sample", "DNA_change", "gene"],keep=False)
+
+        local_nodes, local_edges = process_table(
+            table,
+            name = "structural_variants",
         )
 
         logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
@@ -573,7 +595,6 @@ if __name__ == "__main__":
         "short_mutations_external",
         "copy_number_amplifications_local",
         "copy_number_amplifications_external",
-        "structural_variants_2",
         # "oncokb",
         # "cgi",
     ]

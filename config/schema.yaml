@@ -340,6 +340,10 @@ sample carries variant:
         expHomCI__over: str
         undisruptedCopyNumber: str
         affectedCopyNumber: str
+        truncation: str
+        undisruptedCopiesMin2: double
+        anySV: bool
+        effects: bool
 
 
 ### CAUSES
