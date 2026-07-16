@@ -146,6 +146,8 @@ transformers:
         column: mutationEffectDescription
         to_property: mutation_effect_description
         for_object: copy_number_amplification
+        forbidden: "[']"
+        substitute: "_"
     - map:
         column: citationPMids
         to_property: citation_PM_ids
@@ -154,14 +156,20 @@ transformers:
         column: geneSummary
         to_property: gene_summary
         for_object: gene
-    - map:
+        forbidden: "[']"
+        substitute: "_"
+    - replace:
         column: variantSummary
         to_property: variant_summary
         for_object: copy_number_amplification
-    - map:
+        forbidden: "[']"
+        substitute: "_"
+    - replace:
         column: tumorTypeSummary
         to_property: tumor_type_summary
         for_object: copy_number_amplification
+        forbidden: "[']"
+        substitute: "_"
     - string:
         value: " "
         to_property: edgelabel
