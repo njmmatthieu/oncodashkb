@@ -57,8 +57,8 @@ transformers:
         column_to_translate: 
             - Gene_type
         translations:
-            gain: GoF
-            loss: LoF
+            gain: gain
+            loss: loss
     ## Genes
     - translate:
         column: primary_gene
@@ -116,8 +116,8 @@ transformers:
         for_object: gene_status
         on_unknown_value: skip
         translations:
-            gain: GoF
-            loss: LoF
+            gain: gain
+            loss: loss
     ## Genes
     - map: 
         column: primary_gene

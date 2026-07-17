@@ -352,8 +352,8 @@ sample carries variant:
 # which are represented as nodes, so as to allow a causal path
 # to go through variant -> gene status -> transcript activity.
 # Hence, outcomes have at least two instances:
-# - Gene:GoF, and
-# - Gene:LoF.
+# - Gene:gain, and
+# - Gene:loss.
 
 variant causes gene status:
     is_a: causes

@@ -40,10 +40,10 @@ transformers:
         column_to_translate: 
             - gene_role
         translations:
-            Loss-of-function: LoF
-            Likely Loss-of-function: LoF
-            Gain-of-function: GoF
-            Likely Gain-of-function: GoF
+            Loss-of-function: loss
+            Likely Loss-of-function: loss
+            Gain-of-function: gain
+            Likely Gain-of-function: gain
             Inconclusive: Inconclusive
             Unknown: Unknown
             Likely Neutral: Likely Neutral
@@ -68,10 +68,10 @@ transformers:
         column_to_translate:
             - gene_role
         translations:
-            Loss-of-function: LoF
-            Likely Loss-of-function: LoF
-            Gain-of-function: GoF
-            Likely Gain-of-function: GoF
+            Loss-of-function: loss
+            Likely Loss-of-function: loss
+            Gain-of-function: gain
+            Likely Gain-of-function: gain
             Inconclusive: Inconclusive
             Unknown: Unknown
             Likely Neutral: Likely Neutral
@@ -81,10 +81,10 @@ transformers:
         for_object: gene_status
         on_unknown_value: skip
         translations:
-            Loss-of-function: LoF
-            Likely Loss-of-function: LoF
-            Gain-of-function: GoF
-            Likely Gain-of-function: GoF
+            Loss-of-function: loss
+            Likely Loss-of-function: loss
+            Gain-of-function: gain
+            Likely Gain-of-function: gain
             Inconclusive: Inconclusive
             Unknown: Unknown
             Likely Neutral: Likely Neutral

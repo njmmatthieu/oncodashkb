@@ -43,11 +43,11 @@ transformers:
         column_to_translate: 
             - gene_role
         translations:
-            Loss-of-function: LoF
-            Likely Loss-of-function: LoF
-            Gain-of-function: GoF
-            Likely Gain-of-function: GoF
-            Act: GoF
+            Loss-of-function: loss
+            Likely Loss-of-function: loss
+            Gain-of-function: gain
+            Likely Gain-of-function: gain
+            Act: gain
             Inconclusive: Inconclusive
             ambiguous: ambiguous
             Unknown: Unknown
@@ -80,11 +80,11 @@ transformers:
         column_to_translate: 
             - gene_role
         translations:
-            Loss-of-function: LoF
-            Likely Loss-of-function: LoF
-            Gain-of-function: GoF
-            Likely Gain-of-function: GoF
-            Act: GoF
+            Loss-of-function: loss
+            Likely Loss-of-function: loss
+            Gain-of-function: gain
+            Likely Gain-of-function: gain
+            Act: gain
             Inconclusive: Inconclusive
             ambiguous: ambiguous
             Unknown: Unknown
@@ -94,11 +94,11 @@ transformers:
         for_object: variant_causes_gene_status
         on_unknown_value: skip
         translations:
-            Loss-of-function: LoF
-            Likely Loss-of-function: LoF
-            Gain-of-function: GoF
-            Likely Gain-of-function: GoF
-            Act: GoF
+            Loss-of-function: loss
+            Likely Loss-of-function: loss
+            Gain-of-function: gain
+            Likely Gain-of-function: gain
+            Act: gain
             Inconclusive: Inconclusive
             ambiguous: ambiguous
             Unknown: Unknown
@@ -110,7 +110,7 @@ transformers:
             - Likely Loss-of-function
             - Likely Gain-of-function
         consider_false:
-            - LoF
+            - Loss-of-function
             - Gain-of-function
             - Inconclusive
             - Act
