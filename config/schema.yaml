@@ -544,9 +544,14 @@ inhibition:
 ### TRASNCRIPT TO GENE RELATIONSHIP
 
 transcript to gene relationship:
-    # is_a: transcript to gene relationship
     represented_as: edge
     input_label: transcript_to_gene_relationship
+    properties:
+        data_source: str
+
+gene to gene product relationship:
+    represented_as: edge
+    input_label: gene_to_gene_product_relationship
     properties:
         data_source: str
 
