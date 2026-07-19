@@ -177,7 +177,8 @@ if [[ ! -d $decider_snapshot_dir ]] ; then
 
     p="$decider_dir/DECIDER WP9 Oncodash/Annotated Genomic Data/vTMB"
     cp "$p/brk_placeholder_vTMB.xlsx" "$decider_snapshot_dir/structural_variants_placeholder.xlsx"
-    cp "$p/NETWORK_OT_OKB_filtered_2024_12_17.csv" "$decider_snapshot_dir/oncokb_gene_status_info.csv"
+    cp "$p/Supplementary_data_aberrations.xlsx" "$decider_snapshot_dir/treatments_oncokb_placeholder.xlsx"
+    
 
     p="$decider_dir/DECIDER WP1 Clinical data"
     cp "$p/12122025_Clinical export DECIDER collab.xlsx" "$decider_snapshot_dir/clinical_export.xlsx"
@@ -206,7 +207,7 @@ declare -a decider_files=(
     $decider_snapshot_dir/cnas_external.csv
     $decider_snapshot_dir/structural_variants.csv
     $decider_snapshot_dir/treatments_oncokb.csv
-    $decider_snapshot_dir/oncokb_gene_status_info.csv
+    $decider_snapshot_dir/treatments_oncokb_placeholder.xlsx
     $decider_snapshot_dir/clinical_export.xlsx
     $decider_snapshot_dir/structural_variants_placeholder.xlsx
 )

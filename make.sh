@@ -96,11 +96,11 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py
     --open-targets-drug-molecule            $data_dir/OT/drug_molecule/
     --open-targets-drug_mechanism_of_action $data_dir/OT/drug_mechanism_of_action/
     --open-targets-target                   $data_dir/OT/target/
-    --oncokb-gene-status                    $decider_dir/oncokb_gene_status_info.csv
     ${sub_sample}
     ${weave_args}"
 echo "Weaving command:" >&2
 echo "$cmd" >&2
+    # --oncokb-gene-status                    $decider_dir/treatments_oncokb_placeholder.xlsx
     # --structural-variants-placeholder                   $decider_dir/structural_variants_placeholder.xlsx 
 
 $cmd > last_biocypher_import.sh

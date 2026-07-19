@@ -1,13 +1,10 @@
 row:
     cat_format:
         columns: 
-            - gene
-            - GoF_LoF
-        format_string: "{gene}:{GoF_LoF}"
+            - Gene
+            - Gene_type
         to_subject: gene_status
-        # to_property: gene_symbol_gene_role
-        # for_object: gene_status
-
+        format_string: "{Gene}:{Gene_type}"
 transformers:
     - split:
         column: Drugs
@@ -16,9 +13,6 @@ transformers:
             - \+:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment
-        # forbidden: ';'
-        # substitute: ','
-    # Split the column 'Drugs' -> Treatment into unique drugs. 
     - split_translate:
         column: Drugs
         to_object: drug
@@ -27,49 +21,9 @@ transformers:
         translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
         translate_from: name
         translate_to: id
-    # - split_translate:
-    #     column: Drugs
-    #     separator: "[,|+]"
-    #     translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
-    #     translate_from: name
-    #     translate_to: id
-    #     match:
-    #         - \+:
-    #             from_subject: treatment 
-    #             to_object: drug
-    #             via_relation: treatment_has_part_drug
-    # Properties
-    ## Gene Status
-    - translate_cat_format:
-        columns: 
-            - gene
-            - GoF_LoF
-        # to_subject: gene_status
-        to_property: ensembl_id_gene_role
-        for_object: gene_status
-        format_string: "{gene}:{GoF_LoF}"
-        column_to_translate: 
-            - gene
-        translations_file: data/HGNC/hgnc_complete_set.txt
-        translate_from: symbol
-        translate_to: ensembl_gene_id
-        sep: "\t"
     - map:
-        column: GoF_LoF
-        to_property: gene_role
-        for_object: gene_status
-    ## Variant biomarker for treatment
-    # - map:
-    #     column: fda_level
-    #     to_property: fda_level
-    #     for_object: variant_biomarker_for_treatment
-    # - map:
-    #     column: Tier
-    #     to_property: Tier
-    #     for_object: variant_biomarker_for_treatment
-    # - map:
-    #     column: Cancer_types
-    #     to_property: tumorType
-    #     for_object: variant_biomarker_for_treatment
+        column: Tier
+        to_property: Tier
+        for_object: variant_biomarker_for_treatment
 metadata:
-        - data_source: oncokb_gene_status_annotation
+        - data_source: oncokb_placeholder_annotation

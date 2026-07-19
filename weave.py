@@ -370,11 +370,10 @@ if __name__ == "__main__":
     if asked.oncokb_gene_status:
         opt_loaded += 1
         logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
-
         data_file = asked.oncokb_gene_status[0]
 
         logging.info(f" |  | Load data `{data_file}`...")
-        table = progress_read(data_file, hint=72648, sub_sample = asked.sub_sample)
+        table = pd.read_excel(data_file, sheet_name=1)
 
         # Replace "." by "_" in column names
         table_okb = table.rename(columns={"Gene.type":"Gene_type"})
