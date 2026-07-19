@@ -22,15 +22,15 @@ fi
 # set -e
 # set -o pipefail
 
-decider_dir="$(realpath $1)"
-data_dir="$(realpath $1/..)"
+data_dir="data"
+decider_snapshot_dir="$(realpath $data_dir/$1)"
 
 sub_sample=""
 if [[ -n "$3" ]] ; then
     if [[ "$3" == "debug" || "$3" == "xdebug" ]] ; then
         echo "DEBUG MODE" >&2
-        data_dir="$(realpath $decider_dir/../../data_debug)"
-        decider_dir="$(realpath $decider_dir/../../data_debug/DECIDER_debug)"
+        data_dir="$(realpath $decider_snapshot_dir/../../data_debug)"
+        decider_snapshot_dir="$(realpath $decider_snapshot_dir/../../data_debug/DECIDER_debug)"
     else
         echo "SUBSAMPLING MODE: $3%" >&2
         sub_sample="--sub-sample $3"
@@ -85,23 +85,23 @@ echo "Weave data..." >&2
 
 cmd="uv run python3 ${py_args} $script_dir/weave.py
     --config $CONFIG
-    --clinical                              $decider_dir/clinical_export.xlsx
-    --short-mutations-local                 $decider_dir/short_mutations_local.csv 
-    --short-mutations-external              $decider_dir/short_mutations_external.csv 
-    --copy-number-amplifications-local      $decider_dir/cnas_local.csv
-    --copy-number-amplifications-external   $decider_dir/cnas_external.csv 
-    --structural-variants                   $decider_dir/structural_variants.csv
-    --oncokb                                $decider_dir/treatments_oncokb.csv
+    --clinical                              $decider_snapshot_dir/clinical_export.xlsx
+    --short-mutations-local                 $decider_snapshot_dir/short_mutations_local.csv 
+    --short-mutations-external              $decider_snapshot_dir/short_mutations_external.csv 
+    --copy-number-amplifications-local      $decider_snapshot_dir/cnas_local.csv
+    --copy-number-amplifications-external   $decider_snapshot_dir/cnas_external.csv 
+    --structural-variants                   $decider_snapshot_dir/structural_variants.csv
     --omnipath-networks                     $data_dir/omnipath_networks/omnipath_webservice_interactions__latest.tsv.gz
+    --oncokb-gene-status                    $decider_snapshot_dir/treatments_oncokb_placeholder.xlsx
     --open-targets-drug-molecule            $data_dir/OT/drug_molecule/
     --open-targets-drug_mechanism_of_action $data_dir/OT/drug_mechanism_of_action/
-    --open-targets-target                   $data_dir/OT/target/
     ${sub_sample}
     ${weave_args}"
 echo "Weaving command:" >&2
 echo "$cmd" >&2
-    # --oncokb-gene-status                    $decider_dir/treatments_oncokb_placeholder.xlsx
-    # --structural-variants-placeholder                   $decider_dir/structural_variants_placeholder.xlsx 
+    # --oncokb                                $decider_snapshot_dir/treatments_oncokb.csv
+    # --open-targets-target                   $data_dir/OT/target/
+    # --structural-variants-placeholder                   $decider_snapshot_dir/structural_variants_placeholder.xlsx 
 
 $cmd > last_biocypher_import.sh
 
