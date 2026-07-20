@@ -57,6 +57,7 @@ transformers:
         from_subject: gene_status
         to_object: gene
         via_relation: gene_status_affects_gene
+        reverse_relation: gene_affected_by_gene_status
     # Properties
     ## Alterations
     - cat_format:
@@ -178,6 +179,7 @@ transformers:
             - sample_carries_variant
             - variant_causes_gene_status
             - gene_status_affects_gene
+            - gene_affected_by_gene_status
 
 metadata:
         - data_source: DECIDER_copy_number_amplifications_external

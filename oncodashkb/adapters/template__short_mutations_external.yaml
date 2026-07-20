@@ -23,7 +23,7 @@ transformers:
     ## Alteration
     - map:
         column: alteration
-        from_subject: sample
+        from_subject: sample       
         to_object: short_mutation
         via_relation: sample_carries_variant
     ## Gene Stauts
@@ -53,6 +53,7 @@ transformers:
         from_subject: gene_status
         to_object: gene
         via_relation: gene_status_affects_gene
+        reverse_relation: gene_affected_by_gene_status
     # Properties
     ## Gene Stauts
     - translate_cat_format:
@@ -106,7 +107,6 @@ transformers:
         column: hugoSymbol
         to_property: gene_symbol
         for_object: gene
-        via_relation: gene_status_affects_gene
     ## Alterations
     - map:
         column: tumorType
@@ -167,5 +167,6 @@ transformers:
             - sample_carries_variant
             - variant_causes_gene_status
             - gene_status_affects_gene
+            - gene_affected_by_gene_status
 metadata:
         - data_source: DECIDER_short_mutations_external
