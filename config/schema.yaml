@@ -344,6 +344,7 @@ sample carries variant:
         undisruptedCopiesMin2: double
         anySV: bool
         effects: bool
+        RNA_quant: double
 
 ### CAUSES
 

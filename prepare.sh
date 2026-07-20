@@ -171,7 +171,7 @@ if [[ ! -d $decider_snapshot_dir ]] ; then
     p="$decider_dir/DECIDER WP9 Oncodash/Annotated Genomic Data/cnas_v2.9_short_mutations_v4.10"
     cp "$p/short_mutations_v4.10_local.csv" "$decider_snapshot_dir/short_mutations_local.csv"
     cp "$p/short_mutations_v4.10_external.csv" "$decider_snapshot_dir/short_mutations_external.csv"
-    cp "$p/cnas_v2.9_local.csv" "$decider_snapshot_dir/cnas_local.csv"
+    cp "$p/cnas_v2.9_local_w_expression.csv" "$decider_snapshot_dir/cnas_local.csv"
     cp "$p/cnas_v2.9_external.csv" "$decider_snapshot_dir/cnas_external.csv"
     cp "$p/treatments_oncokb.csv" "$decider_snapshot_dir/treatments_oncokb.csv"
 
