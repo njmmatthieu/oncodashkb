@@ -544,6 +544,12 @@ transcript to gene relationship:
     properties:
         data_source: str
 
+gene to gene product relationship:
+    represented_as: edge
+    input_label: gene_to_gene_product_relationship
+    properties:
+        data_source: str
+
 ### DRUG HAS TARGET
 
 drug has target:
