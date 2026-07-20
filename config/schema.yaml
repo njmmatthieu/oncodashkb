@@ -571,6 +571,19 @@ drug has target:
     represented_as: edge
     input_label: drug_has_target
     properties:
+        actionType: str
+        mechanismOfAction: str
+        references: str
+        data_source: str
+
+gene target for drug:
+    is_a: drug to gene association
+    represented_as: edge
+    label_in_input: gene_target_for_drug
+    properties:
+        actionType: str
+        mechanismOfAction: str
+        references: str
         data_source: str
 
 treatment has part drug:
