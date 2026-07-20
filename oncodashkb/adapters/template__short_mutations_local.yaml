@@ -38,9 +38,9 @@ transformers:
         to_property: homogenous
         for_object: sample_carries_variant
         consider_true:
-            - 1.0
+            - True
         consider_false:
-            - 0.0
+            - False
     - map:
         column: refCount
         to_property: refCount
