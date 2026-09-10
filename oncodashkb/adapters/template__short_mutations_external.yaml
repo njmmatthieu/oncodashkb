@@ -52,6 +52,32 @@ transformers:
         to_object: gene
         via_relation: gene_status_affects_gene
         reverse_relation: gene_affected_by_gene_status
+    ## Treatments
+    - replace:
+        column: treatment
+        to_object: treatment
+        from_subject: gene_status
+        via_relation: variant_biomarker_for_treatment
+        forbidden: ';'
+        substitute: ' + '
+    - split_translate:
+        column: treatment
+        to_object: drug
+        from_subject: gene_status
+        via_relation: variant_biomarker_for_treatment
+        separator: ";"
+        translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
+        translate_from: name
+        translate_to: id
+    - split_translate:
+        column: treatment
+        from_subject: treatment
+        to_object: drug
+        via_relation: treatment_has_part_drug
+        separator: ";"
+        translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
+        translate_from: name
+        translate_to: id
     # Properties
     ## Gene Stauts
     - translate_cat_format:
@@ -164,6 +190,7 @@ transformers:
             - variant_causes_gene_status
             - gene_status_affects_gene
             - gene_affected_by_gene_status
+    # Visualisation Label
     - translate:
         column: patient_id
         to_property: visualisation_label
@@ -209,5 +236,20 @@ transformers:
         column: hugoSymbol
         to_property: visualisation_label
         for_object: gene
+    ## Variant biomarker for treatment
+    - map:
+        column: level_of_evidence
+        to_property: level_of_evidence
+        for_object: variant_biomarker_for_treatment
+    - replace:
+        column: citations
+        to_property: citations
+        for_object: variant_biomarker_for_treatment
+        forbidden: ';'
+        substitute: ','
+    - map:
+        column: tumorType
+        to_property: tumorType
+        for_object: variant_biomarker_for_treatment
 metadata:
         - data_source: DECIDER_short_mutations_external

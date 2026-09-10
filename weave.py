@@ -322,6 +322,34 @@ if __name__ == "__main__":
         edges += local_edges
         logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
+    if asked.short_mutations_external:
+        opt_loaded += 1
+        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
+
+        data_file = asked.short_mutations_external[0]
+        logging.info(f" |  | Load data `{data_file}`...")
+        table = pd.read_excel(data_file)
+
+        biomarker_file = asked.oncokb[0]
+        biomarker_table = progress_read(biomarker_file, hint=1050)
+
+        table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType"}),
+                                                        how="left",
+                                                        on="alteration")
+
+         # Stripping semicolon at the end of "treatment" 
+        table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
+
+        local_nodes, local_edges = process_table(
+            table_merged,
+            name="short_mutations_external",
+        )
+
+        logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
+        nodes += local_nodes
+        edges += local_edges
+        logging.info(f"Done adapter {opt_loaded}/{opt_total}")
+
     if asked.structural_variants_placeholder:
         opt_loaded += 1
         logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
@@ -390,27 +418,27 @@ if __name__ == "__main__":
         edges += local_edges
         logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
-    if asked.oncokb:
-        opt_loaded += 1
-        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
+    # if asked.oncokb:
+    #     opt_loaded += 1
+    #     logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
 
-        data_file = asked.oncokb[0]
+    #     data_file = asked.oncokb[0]
 
-        logging.info(f" |  | Load data `{data_file}`...")
-        table = progress_read(data_file, hint=72648, sub_sample = asked.sub_sample)
+    #     logging.info(f" |  | Load data `{data_file}`...")
+    #     table = progress_read(data_file, hint=72648, sub_sample = asked.sub_sample)
 
-        # Stripping semicolon at the end of "treatment" 
-        table["treatment"] = table.treatment.str.upper().str.strip(";$")
+    #     # Stripping semicolon at the end of "treatment" 
+    #     table["treatment"] = table.treatment.str.upper().str.strip(";$")
 
-        local_nodes, local_edges = process_table(
-            table,
-            name="oncokb",
-        )
+    #     local_nodes, local_edges = process_table(
+    #         table,
+    #         name="oncokb",
+    #     )
 
-        logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
-        nodes += local_nodes
-        edges += local_edges
-        logging.info(f"Done adapter {opt_loaded}/{opt_total}")
+    #     logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
+    #     nodes += local_nodes
+    #     edges += local_edges
+    #     logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
     if asked.cgi:
         opt_loaded += 1
@@ -591,7 +619,7 @@ if __name__ == "__main__":
 
     direct_mappings = [
         "short_mutations_local",
-        "short_mutations_external",
+        # "short_mutations_external",
         "copy_number_amplifications_local",
         "copy_number_amplifications_external",
         # "oncokb",
