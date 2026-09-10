@@ -328,7 +328,7 @@ if __name__ == "__main__":
 
         data_file = asked.short_mutations_external[0]
         logging.info(f" |  | Load data `{data_file}`...")
-        table = pd.read_excel(data_file)
+        table = progress_read(data_file, hint=114623, sub_sample = asked.sub_sample)
 
         biomarker_file = asked.oncokb[0]
         biomarker_table = progress_read(biomarker_file, hint=1050)
