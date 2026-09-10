@@ -403,8 +403,7 @@ variant biomarker for treatment:
         level_of_evidence: str
         cgi_level: str
         citations: str
-        tumorType: str
-        Cancer_types: str
+        biomarkerTumorType: str
         data_source: str
         Tier: str
 
