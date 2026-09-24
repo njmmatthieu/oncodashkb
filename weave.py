@@ -334,8 +334,8 @@ if __name__ == "__main__":
         biomarker_table = progress_read(biomarker_file, hint=1050)
 
         table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType"}),
-                                                        how="left",
-                                                        on="alteration")
+                                   how="left",
+                                   on="alteration")
 
          # Stripping semicolon at the end of "treatment" 
         table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
@@ -343,6 +343,39 @@ if __name__ == "__main__":
         local_nodes, local_edges = process_table(
             table_merged,
             name="short_mutations_external",
+        )
+
+        logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
+        nodes += local_nodes
+        edges += local_edges
+        logging.info(f"Done adapter {opt_loaded}/{opt_total}")
+
+    if asked.copy_number_amplifications_external:
+        opt_loaded += 1
+        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
+
+        data_file = asked.copy_number_amplifications_external[0]
+        logging.info(f" |  | Load data `{data_file}`...")
+        table = pd.progress_read(data_file, hint=259194, sub_sample= asked.sub_sample)
+
+        biomarker_file = asked.oncokb[0]
+        biomarker_table = progress_read(biomarker_file, hint=1050)
+
+        table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType"}),
+                                                        how="left",
+                                                        on="alteration")
+        table["alteration_complete"] = table["hugoSymbol"] + ":" + table["alteration"]
+        table_merged = table_merged.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType", 
+                                                                          "alteration":"alteration_complete"}),
+                                          how="left",
+                                          on="alteration_complete")
+
+         # Stripping semicolon at the end of "treatment" 
+        table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
+
+        local_nodes, local_edges = process_table(
+            table_merged,
+            name="copy_number_amplifications_external",
         )
 
         logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
@@ -621,7 +654,7 @@ if __name__ == "__main__":
         "short_mutations_local",
         # "short_mutations_external",
         "copy_number_amplifications_local",
-        "copy_number_amplifications_external",
+        # "copy_number_amplifications_external",
         # "oncokb",
         # "cgi",
     ]
