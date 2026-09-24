@@ -60,22 +60,7 @@ transformers:
         via_relation: gene_status_affects_gene
         reverse_relation: gene_affected_by_gene_status
     ## Treatments
-    - replace:
-        column: treatment
-        to_object: treatment
-        from_subject: gene_status
-        via_relation: variant_biomarker_for_treatment
-        forbidden: ';'
-        substitute: ' + '
-    - split_translate:
-        column: treatment
-        to_object: drug
-        from_subject: gene_status
-        via_relation: variant_biomarker_for_treatment
-        separator: ";"
-        translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
-        translate_from: name
-        translate_to: id
+    - escat_tier_transformer
     - split_translate:
         column: treatment
         from_subject: treatment
@@ -201,30 +186,31 @@ transformers:
         for_object: copy_number_amplification
         forbidden: "[']"
         substitute: "_"
-    - string:
-        value: " "
-        to_property: edgelabel
-        for_objects:
-            - patient_carries_sample
-            - sample_carries_variant
-            - variant_causes_gene_status
-            - gene_status_affects_gene
-            - gene_affected_by_gene_status
     ## Variant biomarker for treatment
-    - map:
-        column: level_of_evidence
-        to_property: level_of_evidence
-        for_object: variant_biomarker_for_treatment
     - replace:
         column: citations
         to_property: citations
-        for_object: variant_biomarker_for_treatment
+        for_object:
+          - variant_biomarker_for_treatment_level_IA
+          - variant_biomarker_for_treatment_level_IC
+          - variant_biomarker_for_treatment_level_II
+          - variant_biomarker_for_treatment_level_IIIA
+          - variant_biomarker_for_treatment_level_IIIB
+          - variant_biomarker_for_treatment_level_IVA
+          - variant_biomarker_for_treatment_level_IVB
         forbidden: ';'
         substitute: ','
     - map:
         column: biomarkerTumorType
         to_property: biomarkerTumorType
-        for_object: variant_biomarker_for_treatment
+        for_object:
+          - variant_biomarker_for_treatment_level_IA
+          - variant_biomarker_for_treatment_level_IC
+          - variant_biomarker_for_treatment_level_II
+          - variant_biomarker_for_treatment_level_IIIA
+          - variant_biomarker_for_treatment_level_IIIB
+          - variant_biomarker_for_treatment_level_IVA
+          - variant_biomarker_for_treatment_level_IVB
     ## Visualisation label
     - translate:
         column: patient_id
@@ -276,6 +262,15 @@ transformers:
         column: hugoSymbol
         to_property: visualisation_label
         for_object: gene
+    - string:
+        value: " "
+        to_property: edgelabel
+        for_objects:
+            - patient_carries_sample
+            - sample_carries_variant
+            - variant_causes_gene_status
+            - gene_status_affects_gene
+            - gene_affected_by_gene_status
 
 metadata:
         - data_source: DECIDER_copy_number_amplifications_external
