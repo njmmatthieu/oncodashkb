@@ -187,6 +187,17 @@ transformers:
         forbidden: "[']"
         substitute: "_"
     ## Variant biomarker for treatment
+    - map:
+        column: level_of_evidence
+        to_property: level_of_evidence
+        for_object:
+          - variant_biomarker_for_treatment_level_IA
+          - variant_biomarker_for_treatment_level_IC
+          - variant_biomarker_for_treatment_level_II
+          - variant_biomarker_for_treatment_level_IIIA
+          - variant_biomarker_for_treatment_level_IIIB
+          - variant_biomarker_for_treatment_level_IVA
+          - variant_biomarker_for_treatment_level_IVB
     - replace:
         column: citations
         to_property: citations
