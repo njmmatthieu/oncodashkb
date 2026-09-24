@@ -105,15 +105,7 @@ transformers:
         column: gene
         to_property: gene_symbol
         for_object: gene
-    - string:
-        value: " "
-        to_property: edgelabel
-        for_objects:
-            - patient_carries_sample
-            - sample_carries_variant
-            - variant_causes_gene_status
-            - gene_status_affects_gene
-            - gene_affected_by_gene_status
+    ## Visualisation labels
     - translate:
         column: patient
         to_property: visualisation_label
@@ -149,6 +141,15 @@ transformers:
         format_string: "{gene}:loss"
         to_property: visualisation_label
         for_object: gene_status
+    - string:
+        value: " "
+        to_property: edgelabel
+        for_objects:
+            - patient_carries_sample
+            - sample_carries_variant
+            - variant_causes_gene_status
+            - gene_status_affects_gene
+            - gene_affected_by_gene_status
 
 metadata:
         - data_source: DECIDER_structural_variants
