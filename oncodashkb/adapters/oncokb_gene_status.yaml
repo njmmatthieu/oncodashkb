@@ -16,25 +16,64 @@ transformers:
         translate_to: ensembl_gene_id
         on_unknown_value: skip
         sep: "\t"
+    # - split:
+    #     column: Drugs
+    #     separator: "[,]"
+    #     match:
+    #         - \+:
+    #             to_object: treatment
+    #             via_relation: variant_biomarker_for_treatment
     - split:
-        column: Drugs
+        id_from_column: Drugs
+        match_type_from_column: Tier
         separator: "[,]"
         match:
-            - \+:
+            - IA:
                 to_object: treatment
-                via_relation: variant_biomarker_for_treatment
+                via_relation: variant_biomarker_for_treatment_level_IA
+            - IC:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IC
+            - II:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_II
+            - IIIA:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IIIA
+            - IIIB:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IIIB
+            - IVA:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IVA
+            - IVB:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IVB
+            - X:
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_X
     - split_translate:
         column: Drugs
+        from_subject: treatment
         to_object: drug
-        via_relation: variant_biomarker_for_treatment
+        via_relation: treatment_has_part_drug
         separator: "[,]"
         translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
         translate_from: name
         translate_to: id
-    - map:
-        column: Tier
-        to_property: Tier
-        for_object: variant_biomarker_for_treatment
+    # - split_translate:
+    #     column: Drugs
+    #     to_object: drug
+    #     via_relation: variant_biomarker_for_treatment
+    #     separator: "[,]"
+    #     translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
+    #     translate_from: name
+    #     translate_to: id
+    # - map:
+    #     column: Tier
+    #     to_property: Tier
+    #     for_object: variant_biomarker_for_treatment
+    ## Visualisation Labels
     - cat_format:
         columns: 
             - Gene
