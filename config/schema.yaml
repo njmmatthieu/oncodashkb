@@ -411,36 +411,85 @@ biomarker_for_treatment_level_IA:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_IA
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 biomarker_for_treatment_level_IC:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_IC
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 biomarker_for_treatment_level_II:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_II
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 biomarker_for_treatment_level_IIIA:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_IIIA
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 biomarker_for_treatment_level_IIIB:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_IIIB
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 biomarker_for_treatment_level_IVA:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_IVA
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 biomarker_for_treatment_level_IVB:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: biomarker_for_treatment_level_IVB
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
 
 ## METADATA
 
