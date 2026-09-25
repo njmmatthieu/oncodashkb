@@ -34,6 +34,7 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
         fda_level = str(row["level_of_evidence"])
         cancer_type = str(row["biomarkerTumorType"])
         gene_role = str(row["gene_role"])
+        oncogenic = str(row["oncogenic"])
 
         approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
         # approved = description_contains_drugs(str(row["decription"], approved_drugs) and fda_level in ["1", "2"]
@@ -73,7 +74,8 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
             tier = "IVA"
             
         # Tier IVB
-        elif gene_role in ["Gain-of-function", "Likely Gain-of-function", "Act"]:
+        # FIXME Aberrations in drug targets 
+        elif gene_role in ["Gain-of-function", "Likely Gain-of-function", "Act"] and oncogenic:
             tier = "IVB"
 
         # Tier X
