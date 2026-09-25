@@ -92,6 +92,7 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py
     --copy-number-amplifications-external   $decider_snapshot_dir/cnas_external.csv 
     --structural-variants                   $decider_snapshot_dir/structural_variants.csv
     --omnipath-networks                     $data_dir/omnipath_networks/omnipath_webservice_interactions__latest.tsv.gz
+    --oncokb                                $decider_snapshot_dir/treatments_oncokb.csv
     --oncokb-gene-status                    $decider_snapshot_dir/treatments_oncokb_placeholder.xlsx
     --open-targets-drug-molecule            $data_dir/OT/drug_molecule/
     --open-targets-drug_mechanism_of_action $data_dir/OT/drug_mechanism_of_action/
@@ -99,7 +100,6 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py
     ${weave_args}"
 echo "Weaving command:" >&2
 echo "$cmd" >&2
-    # --oncokb                                $decider_snapshot_dir/treatments_oncokb.csv
     # --open-targets-target                   $data_dir/OT/target/
     # --structural-variants-placeholder                   $decider_snapshot_dir/structural_variants_placeholder.xlsx 
 
