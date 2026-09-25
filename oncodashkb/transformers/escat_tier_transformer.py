@@ -32,7 +32,8 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
     def __call__(self, row, i):
         treatment = str(row["treatment"])
         fda_level = str(row["level_of_evidence"])
-        cancer_type = str(row["tumorType"])
+        cancer_type = str(row["biomarkerTumorType"])
+        gene_role = str(row["gene_role"])
 
         approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
         # approved = description_contains_drugs(str(row["decription"], approved_drugs) and fda_level in ["1", "2"]
@@ -53,18 +54,17 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
              approved:
             tier = "II"
             
+        # Tier IIIA
+        elif fda_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
+             approved :
+            tier = "IIIA"
+
         # Tier IVA
         elif fda_level in ["LEVEL_3A"] and \
              not "Trastuzumab Deruxtecan" in treatment and  \
              cancer_type in ["Ovarian", "ovarian", "Solid", "solid"]:
             tier = "IVA"
         
-        # Tier IIIA
-        # FIXME NB rule => fda 1 ou 2 mais code de Taru = fda 1, 2 ou 3 et approved a verifier
-        elif fda_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
-             approved :
-             # and cancer_type not in ["ovarian", "ovarian", "Solid", "solid"]
-            tier = "IIIA"
             
         # FIXME Tier IIIB ne concerne pas oncokb, donc pas applicable dans le transformer.
         
@@ -73,8 +73,12 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
             tier = "IVA"
             
         # Tier IVB
-        else:
+        elif gene_role in ["Gain-of-function", "Likely Gain-of-function", "Act"]:
             tier = "IVB"
+
+        # Tier X
+        else:
+            tier = "X"
             
         yield treatment, getattr(owtypes, "biomarker_for_treatment_level_"+tier),  getattr(owtypes, "treatment"), None
         
