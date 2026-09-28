@@ -53,8 +53,39 @@ transformers:
         via_relation: gene_status_affects_gene
         reverse_relation: gene_affected_by_gene_status
     ## Treatments
-    - escat_tier_transformer:
-        from_subject: short_mutation
+    # - escat_tier_transformer:
+    #     from_subject: short_mutation
+    - map:
+        id_from_column: treatment
+        match_type_from_column: oncokb_level
+        from_subject: gene_status
+        to_object: treatment
+        match:
+            - 1:
+                via_relation: biomarker_for_treatment_level_IA
+            - 2:
+                via_relation: biomarker_for_treatment_level_II
+            - 4:
+                via_relation: biomarker_for_treatment_level_IVA
+        # translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
+        # translate_from: name
+        # translate_to: id
+    # - split_translate:
+    #     id_from_column: treatment
+    #     match_type_from_column: oncokb_level
+    #     from_subject: gene_status
+    #     to_object: drug
+    #     separator: ";"
+    #     translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
+    #     translate_from: name
+    #     translate_to: id
+    #     match:
+    #         - 1:
+    #             via_relation: biomarker_for_treatment_level_IA
+    #         - 2:
+    #             via_relation: biomarker_for_treatment_level_II
+    #         - 4:
+    #             via_relation: biomarker_for_treatment_level_IVA
     - split_translate:
         column: treatment
         from_subject: treatment
