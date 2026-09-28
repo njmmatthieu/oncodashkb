@@ -178,6 +178,7 @@ transformers:
           - variant_biomarker_for_treatment_level_IIIB
           - variant_biomarker_for_treatment_level_IVA
           - variant_biomarker_for_treatment_level_IVB
+          - variant_biomarker_for_treatment_level_X
     - replace:
         column: citations
         to_property: citations
@@ -189,6 +190,7 @@ transformers:
           - variant_biomarker_for_treatment_level_IIIB
           - variant_biomarker_for_treatment_level_IVA
           - variant_biomarker_for_treatment_level_IVB
+          - variant_biomarker_for_treatment_level_X
         forbidden: ';'
         substitute: ','
     - map:
@@ -202,6 +204,7 @@ transformers:
           - variant_biomarker_for_treatment_level_IIIB
           - variant_biomarker_for_treatment_level_IVA
           - variant_biomarker_for_treatment_level_IVB
+          - variant_biomarker_for_treatment_level_X
     ## Visualisation Label
     - translate:
         column: patient_id
