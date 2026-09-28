@@ -28,6 +28,7 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
         self.declare_types.make_edge_class("biomarker_for_treatment_level_IIIB", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
         self.declare_types.make_edge_class("biomarker_for_treatment_level_IVA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
         self.declare_types.make_edge_class("biomarker_for_treatment_level_IVB", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_X", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
 
     def __call__(self, row, i):
         treatment = str(row["treatment"])
