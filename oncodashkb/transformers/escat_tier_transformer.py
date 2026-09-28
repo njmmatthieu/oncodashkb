@@ -83,17 +83,6 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
             **kwargs
             ):
         
-#        self.declare = ontoweaver.base.Declare(raise_errors = kwargs["raise_errors"])
-        self.declare_types.make_node_class("alteration")
-        self.declare_types.make_node_class("treatment")
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_IA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_IC", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_II", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_IIIA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_IIIB", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_IVA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_IVB", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
-        self.declare_types.make_edge_class("biomarker_for_treatment_level_X", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
 
         self.value_maker = self.ValueMaker(
             raise_errors=raise_errors,
@@ -109,3 +98,15 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
             raise_errors=raise_errors,
             **kwargs
         )
+        
+#        self.declare = ontoweaver.base.Declare(raise_errors = kwargs["raise_errors"])
+        self.declare_types.make_node_class("alteration")
+        self.declare_types.make_node_class("treatment")
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_IA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_IC", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_II", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_IIIA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_IIIB", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_IVA", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_IVB", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
+        self.declare_types.make_edge_class("biomarker_for_treatment_level_X", getattr(owtypes, "alteration"), getattr(owtypes, "treatment"))
