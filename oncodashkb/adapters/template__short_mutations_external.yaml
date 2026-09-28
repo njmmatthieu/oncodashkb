@@ -60,13 +60,13 @@ transformers:
         match_type_from_column: level_of_evidence
         from_subject: gene_status
         match:
-            - 1:
+            - "1":
                 via_relation: biomarker_for_treatment_level_IA
                 to_object: treatment
-            - 2:
+            - "2":
                 via_relation: biomarker_for_treatment_level_II
                 to_object: treatment
-            - 4:
+            - "4":
                 via_relation: biomarker_for_treatment_level_IVA
                 to_object: treatment
         # translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
