@@ -406,10 +406,10 @@ variant biomarker for treatment:
         data_source: str
         Tier: str
 
-variant biomarker treatment level IA:
+variant biomarker for treatment level IA:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_IA
+    input_label: variant_biomarker_for_treatment_level_IA
     properties:
         oncokb_level: str
         cgi_level: str
@@ -417,10 +417,10 @@ variant biomarker treatment level IA:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level II:
+variant biomarker for treatment level II:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_IC
+    input_label: variant_biomarker_for_treatment_level_IC
     properties:
         oncokb_level: str
         cgi_level: str
@@ -428,10 +428,10 @@ variant biomarker treatment level II:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level II:
+variant biomarker for treatment level II:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_II
+    input_label: variant_biomarker_for_treatment_level_II
     properties:
         oncokb_level: str
         cgi_level: str
@@ -439,10 +439,10 @@ variant biomarker treatment level II:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level IIIA:
+variant biomarker for treatment level IIIA:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_IIIA
+    input_label: variant_biomarker_for_treatment_level_IIIA
     properties:
         oncokb_level: str
         cgi_level: str
@@ -450,10 +450,10 @@ variant biomarker treatment level IIIA:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level IIIB:
+variant biomarker for treatment level IIIB:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_IIIB
+    input_label: variant_biomarker_for_treatment_level_IIIB
     properties:
         oncokb_level: str
         cgi_level: str
@@ -461,10 +461,10 @@ variant biomarker treatment level IIIB:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level IVA:
+variant biomarker for treatment level IVA:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_IVA
+    input_label: variant_biomarker_for_treatment_level_IVA
     properties:
         oncokb_level: str
         cgi_level: str
@@ -472,10 +472,10 @@ variant biomarker treatment level IVA:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level IVB:
+variant biomarker for treatment level IVB:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_IVB
+    input_label: variant_biomarker_for_treatment_level_IVB
     properties:
         oncokb_level: str
         cgi_level: str
@@ -483,10 +483,10 @@ variant biomarker treatment level IVB:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker treatment level X:
+variant biomarker for treatment level X:
     is_a: variant biomarker for treatment
     represented_as: edge
-    input_label: variant_biomarker_treatment_level_X
+    input_label: variant_biomarker_for_treatment_level_X
     properties:
         oncokb_level: str
         cgi_level: str
