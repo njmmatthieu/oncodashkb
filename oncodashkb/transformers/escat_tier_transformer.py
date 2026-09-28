@@ -37,51 +37,52 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
         gene_role = str(row["gene_role"])
         oncogenic = str(row["oncokb_oncogenic"])
 
-        approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
-        # approved = description_contains_drugs(str(row["decription"], approved_drugs) and fda_level in ["1", "2"]
-        approved = treatment in approved_drugs and fda_level in ["1", "2"]
+        if treatment != "nan" :
 
-        # Tier IA
-        if fda_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Ovarian", "ovarian"]:
-            tier = "IA"
-            
-        # Tier IC
-        elif fda_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Solid", "solid"]:
-            tier = "IC"
-            
-        # Tier II:
-        elif fda_level in ["LEVEL_3A"] and \
-             cancer_type in ["Solid", "solid", "Ovarian", "ovarian"] and \
-             not row["treatment"].contains("Trastuzumab Deruxtecan") and  \
-             approved:
-            tier = "II"
-            
-        # Tier IIIA
-        elif fda_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
-             approved :
-            tier = "IIIA"
+            approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
+            # approved = description_contains_drugs(str(row["decription"], approved_drugs) and fda_level in ["1", "2"]
+            approved = treatment in approved_drugs and fda_level in ["1", "2"]
 
-        # Tier IVA
-        elif fda_level in ["LEVEL_3A"] and \
-             not "Trastuzumab Deruxtecan" in treatment and  \
-             cancer_type in ["Ovarian", "ovarian", "Solid", "solid"]:
-            tier = "IVA"
-        
-            
-        # FIXME Tier IIIB ne concerne pas oncokb, donc pas applicable dans le transformer.
-        
-        # FIXME Tier IVA deuxieme regle a verifier: est-ce qu'on prend que level 4 ou R1 et R2 aussi ?
-        elif fda_level in ["LEVEL_4"]:
-            tier = "IVA"
-            
-        # Tier IVB
-        # FIXME Aberrations in drug targets 
-        elif gene_role in ["Gain-of-function", "Likely Gain-of-function", "Act"] and oncogenic:
-            tier = "IVB"
+            # Tier IA
+            if fda_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Ovarian", "ovarian"]:
+                tier = "IA"
+                
+            # Tier IC
+            elif fda_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Solid", "solid"]:
+                tier = "IC"
+                
+            # Tier II:
+            elif fda_level in ["LEVEL_3A"] and \
+                cancer_type in ["Solid", "solid", "Ovarian", "ovarian"] and \
+                not row["treatment"].contains("Trastuzumab Deruxtecan") and  \
+                approved:
+                tier = "II"
+                
+            # Tier IIIA
+            elif fda_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
+                approved :
+                tier = "IIIA"
 
-        # Tier X
-        else:
-            tier = "X"
+            # Tier IVA
+            elif fda_level in ["LEVEL_3A"] and \
+                not "Trastuzumab Deruxtecan" in treatment and  \
+                cancer_type in ["Ovarian", "ovarian", "Solid", "solid"]:
+                tier = "IVA"
             
-        yield treatment, getattr(owtypes, "biomarker_for_treatment_level_"+tier),  getattr(owtypes, "treatment"), None
-        
+                
+            # FIXME Tier IIIB ne concerne pas oncokb, donc pas applicable dans le transformer.
+            
+            # FIXME Tier IVA deuxieme regle a verifier: est-ce qu'on prend que level 4 ou R1 et R2 aussi ?
+            elif fda_level in ["LEVEL_4"]:
+                tier = "IVA"
+                
+            # Tier IVB
+            # FIXME Aberrations in drug targets 
+            elif gene_role in ["Gain-of-function", "Likely Gain-of-function", "Act"] and oncogenic:
+                tier = "IVB"
+
+            # Tier X
+            else:
+                tier = "X"
+                
+            yield treatment, getattr(owtypes, "biomarker_for_treatment_level_"+tier),  getattr(owtypes, "treatment"), None
