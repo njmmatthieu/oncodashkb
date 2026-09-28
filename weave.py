@@ -360,7 +360,7 @@ if __name__ == "__main__":
 
         data_file = asked.copy_number_amplifications_external[0]
         logging.info(f" |  | Load data `{data_file}`...")
-        table = pd.progress_read(data_file, hint=259194, sub_sample= asked.sub_sample)
+        table = progress_read(data_file, hint=259194, sub_sample= asked.sub_sample)
 
         biomarker_file = asked.oncokb[0]
         biomarker_table = progress_read(biomarker_file, hint=1050)
