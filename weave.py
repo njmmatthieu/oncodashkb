@@ -376,7 +376,7 @@ if __name__ == "__main__":
         table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
 
         # Change "oncogenic" to "oncokb_oncogenic"
-        table_merged = table_merged.replace(columns={"oncogenic":"oncokb_oncogenic"})
+        table_merged = table_merged.rename(columns={"oncogenic":"oncokb_oncogenic"})
 
         local_nodes, local_edges = process_table(
             table_merged,
