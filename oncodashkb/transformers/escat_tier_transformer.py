@@ -34,7 +34,7 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
         fda_level = str(row["level_of_evidence"])
         cancer_type = str(row["biomarkerTumorType"])
         gene_role = str(row["gene_role"])
-        oncogenic = str(row["oncogenic"])
+        oncogenic = str(row["oncokb_oncogenic"])
 
         approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
         # approved = description_contains_drugs(str(row["decription"], approved_drugs) and fda_level in ["1", "2"]

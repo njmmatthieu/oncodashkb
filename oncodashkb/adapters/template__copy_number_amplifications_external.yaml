@@ -143,11 +143,11 @@ transformers:
         to_property: tumor_type
         for_object: copy_number_amplification
     - map:
-        column: oncogenic
+        column: oncokb_oncogenic
         to_property: oncokb_oncogenic_annotation
         for_object: copy_number_amplification
     - boolean:
-        column: oncogenic
+        column: oncokb_oncogenic
         to_property: oncogenic
         for_object: copy_number_amplification
         consider_true:
