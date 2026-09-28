@@ -120,7 +120,6 @@ def process_table(table, name):
 
     return local_nodes, local_edges
 
-
 def process_OT(directory, name):
     logging.info(f" | Weave Open Targets {name}...")
 
@@ -175,6 +174,63 @@ def process_OT(directory, name):
         sys.exit(error_codes["FileError"])
 
     return local_nodes, local_edges
+
+def escat_tier_from_oncokb_level(row, approved_drugs = None):
+
+    treatment = str(row["treatment"])
+    oncokb_level = str(row["level_of_evidence"])
+    cancer_type = str(row["biomarkerTumorType"])
+    gene_role = str(row["gene_role"])
+    oncogenic = str(row["oncokb_oncogenic"])
+
+    if treatment != "nan" :
+
+        # approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
+        # approved = description_contains_drugs(str(row["decription"], approved_drugs) and oncokb_level in ["1", "2"]
+        # approved = treatment in approved_drugs and oncokb_level in ["LEVEL_1", "LEVEL_2"]
+
+        # Tier IA
+        if oncokb_level in ["LEVEL_1", "LEVEL_2"] and any(type in cancer_type for type in ["Ovarian", "ovarian"]):
+            tier = "IA"
+            
+        # Tier IC
+        elif oncokb_level in ["LEVEL_1", "LEVEL_2"] and any(type in cancer_type for type in ["Solid", "solid"]):
+            tier = "IC"
+            
+        # Tier II:
+        elif oncokb_level in ["LEVEL_3A"] and \
+            any(type in cancer_type for type in ["Solid", "solid", "Ovarian", "ovarian"]) and \
+            not "Trastuzumab Deruxtecan" in treatment and  \
+            treatment in approved_drugs:
+            tier = "II"
+            
+        # Tier IIIA
+        elif oncokb_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
+            treatment in approved_drugs:
+            tier = "IIIA"
+
+        # Tier IVA
+        elif oncokb_level in ["LEVEL_3A"] and \
+            any(type in cancer_type for type in ["Solid", "solid", "Ovarian", "ovarian"]) and \
+            not "Trastuzumab Deruxtecan" in treatment:
+            tier = "IVA"
+        
+        # FIXME Tier IIIB ne concerne pas oncokb, donc pas applicable dans le transformer.
+        
+        # FIXME Tier IVA deuxieme regle a verifier: est-ce qu'on prend que level 4 ou R1 et R2 aussi ?
+        elif oncokb_level in ["LEVEL_4"]:
+            tier = "IVA"
+            
+        # Tier IVB
+        # FIXME Aberrations in drug targets 
+        elif gene_role in ["Gain-of-function", "Likely Gain-of-function", "Act"] and oncogenic:
+            tier = "IVB"
+
+        # Tier X
+        else:
+            tier = "X"
+
+        return tier
 
 if __name__ == "__main__":
     # TODO add adapter for parquet, one for csv and one that automatically checks filetype.
@@ -326,6 +382,31 @@ if __name__ == "__main__":
         edges += local_edges
         logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
+    if asked.oncokb:
+        opt_loaded += 1
+        logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
+
+        data_file = asked.oncokb[0]
+
+        logging.info(f" |  | Load data `{data_file}`...")
+        biomarker_table = progress_read(data_file, hint=1050, sub_sample = asked.sub_sample)
+
+        # Stripping semicolon at the end of "treatment" 
+        biomarker_table["treatment"] = biomarker_table.treatment.str.upper().str.strip(";$")
+
+        newly_approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
+        oncokb_approved_drugs = biomarker_table[biomarker_table["level_of_evidence"].isin(["LEVEL_1", "LEVEL_2"])]["treatment"].unique().tolist() + newly_approved_drugs
+
+        # local_nodes, local_edges = process_table(
+        #     table,
+        #     name="oncokb",
+        # )
+
+        # logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
+        # nodes += local_nodes
+        # edges += local_edges
+        # logging.info(f"Done adapter {opt_loaded}/{opt_total}")
+
     if asked.short_mutations_external:
         opt_loaded += 1
         logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
@@ -334,16 +415,19 @@ if __name__ == "__main__":
         logging.info(f" |  | Load data `{data_file}`...")
         table = progress_read(data_file, hint=114623, sub_sample = asked.sub_sample)
 
-        biomarker_file = asked.oncokb[0]
-        biomarker_table = progress_read(biomarker_file, hint=1050)
+        # biomarker_file = asked.oncokb[0]
+        # biomarker_table = progress_read(biomarker_file, hint=1050)
 
         table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType"}),
                                    how="left",
                                    on="alteration")
 
          # Stripping semicolon at the end of "treatment" 
-        table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
-        logging.info(f"TEST NA`{table_merged.treatment.isna().value_counts()}`...")
+        # table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
+        
+        table_merged["tier"] = table_merged.apply(escat_tier_from_oncokb_level,
+                                                  axis=1,
+                                                  approved_drugs=oncokb_approved_drugs)
 
         local_nodes, local_edges = process_table(
             table_merged,
@@ -363,8 +447,8 @@ if __name__ == "__main__":
         logging.info(f" |  | Load data `{data_file}`...")
         table = progress_read(data_file, hint=259194, sub_sample= asked.sub_sample)
 
-        biomarker_file = asked.oncokb[0]
-        biomarker_table = progress_read(biomarker_file, hint=1050)
+        # biomarker_file = asked.oncokb[0]
+        # biomarker_table = progress_read(biomarker_file, hint=1050)
 
         table["alteration_complete"] = table["hugoSymbol"] + ":" + table["alteration"]
         table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType", 
@@ -373,10 +457,14 @@ if __name__ == "__main__":
                                    on="alteration_complete")
 
          # Stripping semicolon at the end of "treatment" 
-        table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
+        # table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
 
         # Change "oncogenic" to "oncokb_oncogenic"
         table_merged = table_merged.rename(columns={"oncogenic":"oncokb_oncogenic"})
+
+        table_merged["tier"] = table_merged.apply(escat_tier_from_oncokb_level,
+                                                  axis=1,
+                                                  approved_drugs=oncokb_approved_drugs)
 
         local_nodes, local_edges = process_table(
             table_merged,
@@ -456,27 +544,6 @@ if __name__ == "__main__":
         edges += local_edges
         logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
-    # if asked.oncokb:
-    #     opt_loaded += 1
-    #     logging.info(f"########## Adapter #{opt_loaded}/{opt_total} ##########")
-
-    #     data_file = asked.oncokb[0]
-
-    #     logging.info(f" |  | Load data `{data_file}`...")
-    #     table = progress_read(data_file, hint=72648, sub_sample = asked.sub_sample)
-
-    #     # Stripping semicolon at the end of "treatment" 
-    #     table["treatment"] = table.treatment.str.upper().str.strip(";$")
-
-    #     local_nodes, local_edges = process_table(
-    #         table,
-    #         name="oncokb",
-    #     )
-
-    #     logging.info(f" |  | OK, wove: {len(local_nodes)} nodes, {len(local_edges)} edges.")
-    #     nodes += local_nodes
-    #     edges += local_edges
-    #     logging.info(f"Done adapter {opt_loaded}/{opt_total}")
 
     if asked.cgi:
         opt_loaded += 1
