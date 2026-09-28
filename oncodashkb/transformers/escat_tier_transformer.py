@@ -32,7 +32,7 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
 
     def __call__(self, row, i):
         treatment = str(row["treatment"])
-        fda_level = str(row["level_of_evidence"])
+        oncokb_level = str(row["level_of_evidence"])
         cancer_type = str(row["biomarkerTumorType"])
         gene_role = str(row["gene_role"])
         oncogenic = str(row["oncokb_oncogenic"])
@@ -40,31 +40,31 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
         if treatment != "nan" :
 
             approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
-            # approved = description_contains_drugs(str(row["decription"], approved_drugs) and fda_level in ["1", "2"]
-            approved = treatment in approved_drugs and fda_level in ["1", "2"]
+            # approved = description_contains_drugs(str(row["decription"], approved_drugs) and oncokb_level in ["1", "2"]
+            approved = treatment in approved_drugs and oncokb_level in ["1", "2"]
 
             # Tier IA
-            if fda_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Ovarian", "ovarian"]:
+            if oncokb_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Ovarian", "ovarian"]:
                 tier = "IA"
                 
             # Tier IC
-            elif fda_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Solid", "solid"]:
+            elif oncokb_level in ["LEVEL_1", "LEVEL_2"] and cancer_type in ["Solid", "solid"]:
                 tier = "IC"
                 
             # Tier II:
-            elif fda_level in ["LEVEL_3A"] and \
+            elif oncokb_level in ["LEVEL_3A"] and \
                 cancer_type in ["Solid", "solid", "Ovarian", "ovarian"] and \
                 not row["treatment"].contains("Trastuzumab Deruxtecan") and  \
                 approved:
                 tier = "II"
                 
             # Tier IIIA
-            elif fda_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
+            elif oncokb_level in ["LEVEL_1", "LEVEL_2", "LEVEL_3A"] and \
                 approved :
                 tier = "IIIA"
 
             # Tier IVA
-            elif fda_level in ["LEVEL_3A"] and \
+            elif oncokb_level in ["LEVEL_3A"] and \
                 not "Trastuzumab Deruxtecan" in treatment and  \
                 cancer_type in ["Ovarian", "ovarian", "Solid", "solid"]:
                 tier = "IVA"
@@ -73,7 +73,7 @@ class escat_tier_transformer(ontoweaver.base.Transformer):
             # FIXME Tier IIIB ne concerne pas oncokb, donc pas applicable dans le transformer.
             
             # FIXME Tier IVA deuxieme regle a verifier: est-ce qu'on prend que level 4 ou R1 et R2 aussi ?
-            elif fda_level in ["LEVEL_4"]:
+            elif oncokb_level in ["LEVEL_4"]:
                 tier = "IVA"
                 
             # Tier IVB

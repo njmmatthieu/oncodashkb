@@ -189,7 +189,7 @@ transformers:
     ## Variant biomarker for treatment
     - map:
         column: level_of_evidence
-        to_property: level_of_evidence
+        to_property: oncokb_level
         for_object:
           - variant_biomarker_for_treatment_level_IA
           - variant_biomarker_for_treatment_level_IC

@@ -50,7 +50,7 @@ transformers:
     # - map:
     #  # Replaced by escat_tier_transformer
     #     column: level_of_evidence
-    #     to_property: level_of_evidence
+    #     to_property: oncokb_level
     #     for_object: variant_biomarker_for_treatment
     - escat_tier_transformer
     - replace:
