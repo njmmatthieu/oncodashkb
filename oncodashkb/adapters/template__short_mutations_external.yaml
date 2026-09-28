@@ -53,7 +53,8 @@ transformers:
         via_relation: gene_status_affects_gene
         reverse_relation: gene_affected_by_gene_status
     ## Treatments
-    - escat_tier_transformer
+    - escat_tier_transformer:
+        from_subject: short_mutation
     - split_translate:
         column: treatment
         from_subject: treatment
