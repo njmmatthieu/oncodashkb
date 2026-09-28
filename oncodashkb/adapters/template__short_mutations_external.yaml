@@ -57,7 +57,7 @@ transformers:
     #     from_subject: short_mutation
     - map:
         id_from_column: treatment
-        match_type_from_column: oncokb_level
+        match_type_from_column: level_of_evidence
         from_subject: gene_status
         match:
             - 1:
