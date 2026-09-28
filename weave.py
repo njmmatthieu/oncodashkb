@@ -343,6 +343,7 @@ if __name__ == "__main__":
 
          # Stripping semicolon at the end of "treatment" 
         table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
+        logging.info(f"TEST NA`{table_merged.treatment.isna().value_counts()}`...")
 
         local_nodes, local_edges = process_table(
             table_merged,
@@ -365,14 +366,11 @@ if __name__ == "__main__":
         biomarker_file = asked.oncokb[0]
         biomarker_table = progress_read(biomarker_file, hint=1050)
 
-        table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType"}),
-                                                        how="left",
-                                                        on="alteration")
         table["alteration_complete"] = table["hugoSymbol"] + ":" + table["alteration"]
-        table_merged = table_merged.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType", 
-                                                                          "alteration":"alteration_complete"}),
-                                          how="left",
-                                          on="alteration_complete")
+        table_merged = table.merge(biomarker_table.rename(columns={"tumorType":"biomarkerTumorType", 
+                                                                    "alteration":"alteration_complete"}),
+                                   how="left",
+                                   on="alteration_complete")
 
          # Stripping semicolon at the end of "treatment" 
         table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
