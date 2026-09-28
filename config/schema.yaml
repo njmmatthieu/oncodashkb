@@ -491,6 +491,18 @@ biomarker_for_treatment_level_IVB:
         biomarkerTumorType: str
         data_source: str
 
+biomarker_for_treatment_level_X:
+    is_a: variant biomarker for treatment
+    represented_as: edge
+    input_label: biomarker_for_treatment_level_X
+    properties:
+        fda_level: str
+        level_of_evidence: str
+        cgi_level: str
+        citations: str
+        biomarkerTumorType: str
+        data_source: str
+
 ## METADATA
 
 patient has chronic illness:
