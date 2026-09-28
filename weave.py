@@ -377,6 +377,9 @@ if __name__ == "__main__":
          # Stripping semicolon at the end of "treatment" 
         table_merged["treatment"] = table_merged.treatment.str.upper().str.strip(";$")
 
+        # Change "oncogenic" to "oncokb_oncogenic"
+        table_merged = table_merged.replace(columns={"oncogenic":"oncokb_oncogenic"})
+
         local_nodes, local_edges = process_table(
             table_merged,
             name="copy_number_amplifications_external",
