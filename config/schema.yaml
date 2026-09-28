@@ -417,7 +417,7 @@ variant biomarker for treatment level IA:
         biomarkerTumorType: str
         data_source: str
 
-variant biomarker for treatment level II:
+variant biomarker for treatment level IC:
     is_a: variant biomarker for treatment
     represented_as: edge
     input_label: variant_biomarker_for_treatment_level_IC
