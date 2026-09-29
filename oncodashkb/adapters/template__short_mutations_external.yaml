@@ -57,18 +57,30 @@ transformers:
     #     from_subject: short_mutation
     - map:
         id_from_column: treatment
-        match_type_from_column: level_of_evidence
+        match_type_from_column: tier
         from_subject: gene_status
         match:
-            - "1":
-                via_relation: biomarker_for_treatment_level_IA
+            - '^IA$':
                 to_object: treatment
-            - "2":
-                via_relation: biomarker_for_treatment_level_II
+                via_relation: variant_biomarker_for_treatment_level_IA
+            - '^IC$':
                 to_object: treatment
-            - "4":
-                via_relation: biomarker_for_treatment_level_IVA
+                via_relation: variant_biomarker_for_treatment_level_IC
+            - '^II$':
                 to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_II
+            - '^IIIA$':
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IIIA
+            - '^IIIB$':
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IIIB
+            - '^IVA$':
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IVA
+            - '^IVB$':
+                to_object: treatment
+                via_relation: variant_biomarker_for_treatment_level_IVB
         # translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
         # translate_from: name
         # translate_to: id
@@ -204,6 +216,18 @@ transformers:
     - map:
         column: level_of_evidence
         to_property: oncokb_level
+        for_object:
+          - variant_biomarker_for_treatment_level_IA
+          - variant_biomarker_for_treatment_level_IC
+          - variant_biomarker_for_treatment_level_II
+          - variant_biomarker_for_treatment_level_IIIA
+          - variant_biomarker_for_treatment_level_IIIB
+          - variant_biomarker_for_treatment_level_IVA
+          - variant_biomarker_for_treatment_level_IVB
+          - variant_biomarker_for_treatment_level_X
+    - map:
+        column: tier
+        to_property: escat_tier
         for_object:
           - variant_biomarker_for_treatment_level_IA
           - variant_biomarker_for_treatment_level_IC
