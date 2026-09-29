@@ -400,11 +400,11 @@ variant biomarker for treatment:
     # target: treatment
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
         data_source: str
-        Tier: str
 
 variant biomarker for treatment level IA:
     is_a: variant biomarker for treatment
@@ -412,6 +412,7 @@ variant biomarker for treatment level IA:
     input_label: variant_biomarker_for_treatment_level_IA
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -423,6 +424,7 @@ variant biomarker for treatment level IC:
     input_label: variant_biomarker_for_treatment_level_IC
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -434,6 +436,7 @@ variant biomarker for treatment level II:
     input_label: variant_biomarker_for_treatment_level_II
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -445,6 +448,7 @@ variant biomarker for treatment level IIIA:
     input_label: variant_biomarker_for_treatment_level_IIIA
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -456,6 +460,7 @@ variant biomarker for treatment level IIIB:
     input_label: variant_biomarker_for_treatment_level_IIIB
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -467,6 +472,7 @@ variant biomarker for treatment level IVA:
     input_label: variant_biomarker_for_treatment_level_IVA
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -478,6 +484,7 @@ variant biomarker for treatment level IVB:
     input_label: variant_biomarker_for_treatment_level_IVB
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
@@ -489,6 +496,7 @@ variant biomarker for treatment level X:
     input_label: variant_biomarker_for_treatment_level_X
     properties:
         oncokb_level: str
+        escat_tier: str
         cgi_level: str
         citations: str
         biomarkerTumorType: str
