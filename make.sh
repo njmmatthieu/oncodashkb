@@ -96,7 +96,6 @@ cmd="uv run python3 ${py_args} $script_dir/weave.py
     --oncokb-gene-status                    $decider_snapshot_dir/treatments_oncokb_placeholder.xlsx
     --open-targets-drug-molecule            $data_dir/OT/drug_molecule/
     --open-targets-drug_mechanism_of_action $data_dir/OT/drug_mechanism_of_action/
-    --oncokb                                $decider_snapshot_dir/treatments_oncokb.csv
     ${sub_sample}
     ${weave_args}"
 echo "Weaving command:" >&2
