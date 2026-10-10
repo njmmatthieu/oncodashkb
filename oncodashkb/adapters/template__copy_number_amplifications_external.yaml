@@ -273,6 +273,7 @@ transformers:
           - variant_biomarker_for_treatment_level_IVB
           - variant_biomarker_for_treatment_level_X
     ## Visualisation label
+    ### Nodes
     - translate:
         column: patient_id
         to_property: visualisation_label
@@ -323,6 +324,7 @@ transformers:
         column: hugoSymbol
         to_property: visualisation_label
         for_object: gene
+    ### Edges
     - string:
         value: " "
         to_property: edgelabel
@@ -332,6 +334,18 @@ transformers:
             - variant_causes_gene_status
             - gene_status_affects_gene
             - gene_affected_by_gene_status
+    - map:
+        column: tier
+        to_property: visualisation_label
+        for_object:
+          - variant_biomarker_for_treatment_level_IA
+          - variant_biomarker_for_treatment_level_IC
+          - variant_biomarker_for_treatment_level_II
+          - variant_biomarker_for_treatment_level_IIIA
+          - variant_biomarker_for_treatment_level_IIIB
+          - variant_biomarker_for_treatment_level_IVA
+          - variant_biomarker_for_treatment_level_IVB
+          - variant_biomarker_for_treatment_level_X
 
 metadata:
         - data_source: DECIDER_copy_number_amplifications_external

@@ -87,6 +87,7 @@ transformers:
           - variant_biomarker_for_treatment_level_IVB
           - variant_biomarker_for_treatment_level_X
     ## Visualisation Labels
+    ### Nodes
     - cat_format:
         columns: 
             - Gene
@@ -98,5 +99,18 @@ transformers:
         column: Gene
         to_property: visualisation_label
         for_object: gene
+    ### Edges
+    - map:
+        column: Tier
+        to_property: visualisation_label
+        for_object:
+          - variant_biomarker_for_treatment_level_IA
+          - variant_biomarker_for_treatment_level_IC
+          - variant_biomarker_for_treatment_level_II
+          - variant_biomarker_for_treatment_level_IIIA
+          - variant_biomarker_for_treatment_level_IIIB
+          - variant_biomarker_for_treatment_level_IVA
+          - variant_biomarker_for_treatment_level_IVB
+          - variant_biomarker_for_treatment_level_X
 metadata:
         - data_source: oncokb_placeholder_annotation

@@ -405,6 +405,7 @@ variant biomarker for treatment:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level IA:
     is_a: variant biomarker for treatment
@@ -417,6 +418,7 @@ variant biomarker for treatment level IA:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level IC:
     is_a: variant biomarker for treatment
@@ -429,6 +431,7 @@ variant biomarker for treatment level IC:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level II:
     is_a: variant biomarker for treatment
@@ -441,6 +444,7 @@ variant biomarker for treatment level II:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level IIIA:
     is_a: variant biomarker for treatment
@@ -453,6 +457,7 @@ variant biomarker for treatment level IIIA:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level IIIB:
     is_a: variant biomarker for treatment
@@ -465,6 +470,7 @@ variant biomarker for treatment level IIIB:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level IVA:
     is_a: variant biomarker for treatment
@@ -477,6 +483,7 @@ variant biomarker for treatment level IVA:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level IVB:
     is_a: variant biomarker for treatment
@@ -489,6 +496,7 @@ variant biomarker for treatment level IVB:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 variant biomarker for treatment level X:
     is_a: variant biomarker for treatment
@@ -501,6 +509,7 @@ variant biomarker for treatment level X:
         citations: str
         biomarkerTumorType: str
         data_source: str
+        visualisation_label: str
 
 ## METADATA
 
