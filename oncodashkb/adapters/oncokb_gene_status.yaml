@@ -85,19 +85,5 @@ transformers:
         column: Gene
         to_property: visualisation_label
         for_object: gene
-    # [FIXME]: not sure that this is working
-    - split:
-        column: Drugs
-        to_property: visualisation_label
-        separator: "[,]"
-        for_object: treatment
-    - split_translate:
-        column: Drugs
-        to_property: visualisation_label
-        for_object: drug
-        separator: "[,]"
-        translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
-        translate_from: name
-        translate_to: id
 metadata:
         - data_source: oncokb_placeholder_annotation
