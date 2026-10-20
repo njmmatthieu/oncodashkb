@@ -52,31 +52,10 @@ transformers:
             - '^X$':
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_X
-    - split_translate:
-        column: Drugs
-        from_subject: treatment
-        to_object: drug
-        via_relation: treatment_has_part_drug
-        separator: "[,]"
-        translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
-        translate_from: name
-        translate_to: id
-    # - split_translate:
-    #     column: Drugs
-    #     to_object: drug
-    #     via_relation: variant_biomarker_for_treatment
-    #     separator: "[,]"
-    #     translations_file: ./data/OT/drug_molecule/part-00000-871f412e-aec4-4d33-a50d-feee532ddcd2-c000.snappy.parquet
-    #     translate_from: name
-    #     translate_to: id
-    # - map:
-    #     column: Tier
-    #     to_property: Tier
-    #     for_object: variant_biomarker_for_treatment
     # Properties 
     - map:
         column: Tier
-        to_property: tier
+        to_property: escat_tier
         for_object:
           - variant_biomarker_for_treatment_level_IA
           - variant_biomarker_for_treatment_level_IC
