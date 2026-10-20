@@ -392,7 +392,7 @@ if __name__ == "__main__":
         biomarker_table = progress_read(data_file, hint=1050, sub_sample = asked.sub_sample)
 
         # Stripping semicolon at the end of "treatment" 
-        biomarker_table["treatment"] = biomarker_table.treatment.str.upper().str.strip(";$")
+        biomarker_table["treatment"] = biomarker_table.treatment.str.upper().str.strip(";$").str.replace(pat=";",repl=" + ", regex=False)
 
         newly_approved_drugs = ["Zenocutuzumab", "Selitrectinib"]
         oncokb_approved_drugs = biomarker_table[biomarker_table["level_of_evidence"].isin(["LEVEL_1", "LEVEL_2"])]["treatment"].unique().tolist() + newly_approved_drugs
@@ -533,6 +533,7 @@ if __name__ == "__main__":
         table_okb = table.rename(columns={"Gene.type":"Gene_type"})
         # Upper case and remove parentheses and what is inside.
         table_okb["Drugs"] = table_okb.Drugs.str.upper().str.replace(r'\([^()]*\)', '', regex=True)
+        
 
         local_nodes, local_edges = process_table(
             table_okb,
