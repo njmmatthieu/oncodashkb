@@ -716,3 +716,10 @@ treatment has part drug:
     properties:
         data_source: str
 
+drug part of treatment:
+    is_a: association
+    represented_as: edge
+    input_label: drug_part_of_treatment
+    properties:
+        data_source: str
+
