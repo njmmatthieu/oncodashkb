@@ -21,7 +21,6 @@ short mutation:
         variant_summary: str
         HGVS__change: str
         visualisation_label: str
-        # ensembl_id_alteration: str
 
 copy number amplification:
     is_a: sequence variant
@@ -39,7 +38,6 @@ copy number amplification:
         tumor_type_summary: str
         variant_summary: str
         visualisation_label: str
-        # ensembl_id_alteration: str
 
 structural variant:
     is_a: sequence variant
@@ -57,7 +55,6 @@ structural variant:
         tumor_type_summary: str
         variant_summary: str
         visualisation_label: str
-        # ensembl_id_alteration: str
 
 disease:
     represented_as: node
@@ -226,6 +223,7 @@ lncrna:
         name: str
         ncbi_tax_id: str
         visualisation_label: str
+        data_source: str
 
 # Macromolecular complex
 
@@ -237,6 +235,7 @@ source complex:
         name: str
         ncbi_tax_id: str
         visualisation_label: str
+        data_source: str
 
 target complex:
     is_a: macromolecular_complex
@@ -246,6 +245,7 @@ target complex:
         name: str
         ncbi_tax_id: str
         visualisation_label: str
+        data_source: str
 
 macromolecular complex:
     represented_as: node
@@ -254,6 +254,7 @@ macromolecular complex:
         name: str
         ncbi_tax_id: str
         visualisation_label: str
+        data_source: str
 
 # Micro-RNA
 
@@ -265,6 +266,7 @@ mirna:
         name: str
         ncbi_tax_id: str
         visualisation_label: str
+        data_source: str
 
 # Protein
 
@@ -273,7 +275,6 @@ source protein:
     represented_as: node
     input_label: source_protein
     properties:
-        ensembl_gene_id: str
         gene_symbol: str
         ncbi_tax_id: str
         data_source: str
@@ -284,7 +285,6 @@ target protein:
     represented_as: node
     input_label: target_protein
     properties:
-        ensembl_gene_id: str
         gene_symbol: str
         ncbi_tax_id: str
         data_source: str
@@ -294,7 +294,6 @@ protein:
     represented_as: node
     input_label: protein
     properties:
-        ensembl_gene_id: str
         gene_symbol: str
         ncbi_tax_id: str
         data_source: str
@@ -306,6 +305,7 @@ treatment:
     represented_as: node
     input_label: treatment
     visualisation_label: str
+    data_source: str
 
 ########################
 # EDGES
@@ -606,6 +606,7 @@ undirected molecular interaction:
         curation_effort: str
         extra_attrs: str
         evidences: str
+        data_source: str
 
 stimulation:
     is_a: pairwise molecular interaction
@@ -639,6 +640,7 @@ stimulation:
         curation_effort: str
         extra_attrs: str
         evidences: str
+        data_source: str
 
 inhibition:
     is_a: pairwise molecular interaction
@@ -672,18 +674,21 @@ inhibition:
         curation_effort: str
         extra_attrs: str
         evidences: str
+        data_source: str
 
 ### TRASNCRIPT TO GENE RELATIONSHIP
 
-transcript to gene relationship:
+gene product of gene:
+    is_a: transcript to gene relationship
     represented_as: edge
-    input_label: transcript_to_gene_relationship
+    input_label: gene_product_of_gene
     properties:
         data_source: str
 
-gene to gene product relationship:
+gene has gene product:
+    is_a: gene to gene product relationship
     represented_as: edge
-    input_label: gene_to_gene_product_relationship
+    input_label: gene_has_gene_product
     properties:
         data_source: str
 
