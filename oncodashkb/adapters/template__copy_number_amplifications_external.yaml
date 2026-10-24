@@ -63,37 +63,30 @@ transformers:
     - map:
         id_from_column: treatment
         match_type_from_column: tier
+        from_subject: gene_status
         match:
-            - '^IA$':
-                from_subject: gene_status
+            - ^IA$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_IA
-            - '^IC$':
-                from_subject: gene_status
+            - ^IC$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_IC
-            - '^II$':
-                from_subject: gene_status
+            - ^II$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_II
-            - '^IIIA$':
-                from_subject: gene_status
+            - ^IIIA$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_IIIA
-            - '^IIIB$':
-                from_subject: gene_status
+            - ^IIIB$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_IIIB
-            - '^IVA$':
-                from_subject: gene_status
+            - ^IVA$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_IVA
-            - '^IVB$':
-                from_subject: gene_status
+            - ^IVB$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_IVB
-            - '^X$':
-                from_subject: gene_status
+            - ^X$:
                 to_object: treatment
                 via_relation: variant_biomarker_for_treatment_level_X
     - split_translate:
