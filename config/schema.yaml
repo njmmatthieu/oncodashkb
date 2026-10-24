@@ -67,8 +67,7 @@ gene status:
     represented_as: node
     input_label: gene_status
     properties:
-        gene_role: str
-        ensembl_id_gene_role: str
+        mutation_effect: str
         data_source: str
         visualisation_label: str
         # gene_symbol_gene_status: str

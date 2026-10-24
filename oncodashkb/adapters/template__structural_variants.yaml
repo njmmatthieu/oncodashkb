@@ -94,7 +94,7 @@ transformers:
         format_string: "{gene}:loss"
     - string:
         value: "loss"
-        to_property: gene_role
+        to_property: mutation_effect
         for_object: gene_status
     - string:
         value: "true"

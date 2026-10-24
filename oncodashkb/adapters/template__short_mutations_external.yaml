@@ -114,7 +114,7 @@ transformers:
             Likely Neutral: Likely Neutral
     - translate:
         columns: gene_role
-        to_property: gene_role
+        to_property: mutation_effect
         for_object: gene_status
         on_unknown_value: skip
         translations:

@@ -133,7 +133,7 @@ transformers:
             Unknown: Unknown
     - translate:
         columns: gene_role
-        to_property: gene_role
+        to_property: mutation_effect
         for_object: variant_causes_gene_status
         on_unknown_value: skip
         translations:
