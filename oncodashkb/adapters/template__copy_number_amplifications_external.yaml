@@ -318,6 +318,10 @@ transformers:
         column: hugoSymbol
         to_property: visualisation_label
         for_object: gene
+    - map:
+        column: treatment
+        to_property: visualisation_label
+        for_object: treatment
     ### Edges
     - string:
         value: " "
