@@ -30,7 +30,8 @@ error_codes = {
 }
 
 # Importing OmniPath custom transformer and registering it.
-from oncodashkb.transformers.networks import OmniPath_directed
+from oncodashkb.transformers.networks import OmniPath, OmniPath_directed
+ontoweaver.transformer.register(OmniPath)
 ontoweaver.transformer.register(OmniPath_directed)
 
 # Importing custom transformer for translating sample ids with publication code and registering it.
@@ -612,7 +613,8 @@ if __name__ == "__main__":
 
         filtered_table = table[
             ((table['source_genesymbol'].isin(translations_table.symbol)) | (table.entity_type_source!="protein")) & 
-            ((table['target_genesymbol'].isin(translations_table.symbol)) | (table.entity_type_target!="protein"))
+            ((table['target_genesymbol'].isin(translations_table.symbol)) | (table.entity_type_target!="protein")) &
+            (table['type']!="small_molecule_protein")
         ]
 
         # keeping Homo sapiens interactions
