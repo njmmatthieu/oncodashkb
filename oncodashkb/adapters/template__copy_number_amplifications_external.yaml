@@ -134,7 +134,7 @@ transformers:
     - translate:
         columns: gene_role
         to_property: mutation_effect
-        for_object: variant_causes_gene_status
+        for_object: gene_status
         on_unknown_value: skip
         translations:
             Loss-of-function: loss
