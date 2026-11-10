@@ -56,6 +56,14 @@ transformers:
         to_property: truncation
         for_object: sample_carries_variant
     - map:
+        column: aberration
+        to_property: aberration
+        for_object: sample_carries_variant
+    - map:
+        column: fusion
+        to_property: fusion
+        for_object: sample_carries_variant
+    - map:
         column: undisruptedCopiesMin2
         to_property: undisruptedCopiesMin2
         for_object: sample_carries_variant

@@ -360,6 +360,8 @@ sample carries variant:
         undisruptedCopyNumber: str
         affectedCopyNumber: str
         truncation: str
+        aberration: str
+        fusion: str
         undisruptedCopiesMin2: double
         anySV: bool
         effects: bool
